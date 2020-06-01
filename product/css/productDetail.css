@@ -78,7 +78,8 @@ td.spc{
 }
 
 table tr td{
-/*   border: 1px solid; */
+  padding: 5px;
+  /* border: 1px solid; */
 }
 a.stock {
   display: none;

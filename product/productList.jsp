@@ -21,9 +21,9 @@
 		<input type="text" id="search" placeholder="請輸入商品編號" />
 		<span class="searchIcon"><i class="fa fa-search"></i></span>
 	</div>
-	
+
 	<jsp:useBean id="productList" scope="page" class="com.product.model.ProductService"></jsp:useBean>
-	
+
 	<table>
 		<tr>
 			<th><input type="checkbox" name="" value=""></th>
