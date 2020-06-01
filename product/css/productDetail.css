@@ -1,0 +1,384 @@
+body{
+  margin: 0;
+  font-family: microsoft JhengHei !important;
+  background-color: #F5F5F5 !important;
+}
+/* div.container{
+  border: 1px solid red;
+}
+div.row{
+  border: 1px solid green;
+}
+div.container div.col-sm{
+  border: 1px solid blue;
+} */
+
+div.features_card{
+  background-color: white;
+}
+
+div.introduction_card{
+  margin-top: 10px;
+  margin_bottom: 10px;
+  background-color: white;
+}
+
+div.img_area{
+  display: flex;
+  flex-wrap: wrap;
+  margin: 20px 0px;
+}
+div.main_img{
+  height: 400px;
+  width: 100%;
+  position: relative;
+  background-color: black;
+}
+div.main_img img{
+  max-height: 100%;
+   max-width: 100%;
+   width: auto;
+   height: auto;
+   position: absolute;
+   top: 0;
+   bottom: 0;
+   left: 0;
+   right: 0;
+   margin: auto;
+}
+div.smaller_img{
+  width: 100%;
+  margin: 8px 0px;
+  display: flex;
+  justify-content: space-between;
+}
+div.smaller_img img{
+  width: 18%;
+  transition: 0.2s;
+}
+div.smaller_img img:hover{
+  opacity: 0.7;
+}
+h4{
+  margin: 20px 0px !important;
+}
+
+div.price_area{
+  background-color: #E5B280;
+  margin: 20px 0px;
+  padding: 8px;
+}
+
+div.product_spc{
+  margin: 50px 0px;
+}
+td.spc{
+  width:50px;
+  vertical-align:text-top;
+}
+
+table tr td{
+/*   border: 1px solid; */
+}
+a.stock {
+  display: none;
+}
+a.price {
+  display: none;
+}
+a.PD_ID {
+  display: none;
+}
+
+.btn_option{
+  margin: 5px;
+  background-color: white;
+  padding: 5px; 5px;
+  border: 1px solid #E0DFDF;
+  border-radius: 4px;
+  outline:none;
+}
+.product_spc button:hover:enabled{
+  background-color: #E5B280;
+  color: white;
+  outline:none;
+}
+button.-on{
+  background-color: #E6903B;
+  color: white;
+  outline:none;
+}
+
+.product_spc input{
+  margin: 5px;
+}
+
+button.addCar{
+  height: 50px;
+  width: 150px;
+  margin: 10px;
+  color: #FFF;
+  background-color: #E5B280;
+  border: none;
+  border-radius: 4px;
+}
+
+button.checkout{
+  height: 50px;
+  width: 150px;
+  margin: 10px;
+  color: #FFF;
+  background-color: #E6903B;
+  border: none;
+  border-radius: 4px;
+}
+button.btn_filter{
+  width: 100px;
+  margin: 5px;
+  background-color: #E5B280;
+  color: white;
+  padding: 5px; 5px;
+  border: none;
+  border-radius: 4px;
+}
+button.btn_filter.-on{
+  width: 100px;
+  margin: 5px;
+  background-color: #E6903B;
+  color: white;
+  padding: 5px; 5px;
+  border: none;
+  border-radius: 4px;
+}
+
+
+div.rating_card{
+  margin-top: 10px ;
+  margin-bottom: 10px;
+  background-color: white;
+}
+
+td.ratiog p{
+  text-align: center;
+  margin: 2px;
+}
+.comment_card{
+  margin-top: 10px;
+  margin-bottom: 10px;
+  background-color: white;
+  box-shadow: 1px 3px 3px 3px #cccccc;
+}
+
+img.user_img{
+  height: 40px;
+  border: 1px solid gray;
+  border-radius: 50%
+}
+div.user_info{
+  padding: 15px;
+}
+
+div.comment_img_area{
+  width: 100px;
+  height: 80px;
+  display: inline-block;
+  position: relative;
+  background-color: #f0f0f0;
+  overflow: hidden;
+  margin: 5px 8px;
+}
+img.comment_img{
+  max-height: 100%;
+  max-width: 100%;
+  width: auto;
+  height: auto;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  transition: 0.3s;
+}
+
+img.comment_img:hover{
+  opacity: 0.7;
+}
+
+/* ====================燈箱起點==================== */
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+}
+
+/* Modal Content (Image) */
+.modal-content {
+  margin: auto;
+  display: block;
+  width: 80%;
+  max-width: 700px;
+}
+
+/* Caption of Modal Image (Image Text) - Same Width as the Image */
+#caption {
+  margin: auto;
+  display: block;
+  width: 80%;
+  max-width: 700px;
+  text-align: center;
+  color: #ccc;
+  padding: 10px 0;
+  height: 150px;
+}
+
+/* Add Animation - Zoom in the Modal */
+.modal-content, #caption {
+  animation-name: zoom;
+  animation-duration: 0.6s;
+}
+
+@keyframes zoom {
+  from {transform:scale(0)}
+  to {transform:scale(1)}
+}
+
+/* The Close Button */
+.close {
+  position: absolute;
+  top: 15px;
+  right: 35px;
+  color: #f1f1f1;
+  font-size: 40px;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.close:hover,
+.close:focus {
+  color: #bbb;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* 100% Image Width on Smaller Screens */
+@media only screen and (max-width: 700px){
+  .modal-content {
+    width: 100%;
+  }
+}
+
+
+
+
+
+/* ====================燈箱終點==================== */
+
+
+
+
+/* ====================Pagination起點==================== */
+div.pagination{
+  /* display: block; */
+  margin-top: 80px;
+  margin-bottom: 200px;
+  /* margin-left: 24%; */
+}
+/* Pagination links */
+.pagination a {
+  color: black;
+  font-family: roboto;
+  font-size: 16px;
+  float: left;
+  padding-top: 4px;
+  text-decoration: none;
+  transition: background-color .3s;
+  margin-left: 2px;
+  margin-right: 2px;
+  border: 1px solid #E2E2E2;
+  border-radius: 4px;
+  height: 32px;
+  width: 32px;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+/* Style the active/current link */
+.pagination a.active {
+  background-color: #E6903B;
+  color: white;
+}
+
+/* Add a grey background color on mouse-over */
+.pagination a:hover:not(.active) {
+  background-color: #ddd;
+}
+/* ====================Pagination終點==================== */
+
+
+
+
+/* ====================搜尋列的css起點==================== */
+.search_area{
+  width: 90%;
+  vertical-align: middle;
+  white-space: nowrap;
+  position: relative;
+  display: inline-block;
+  margin-left: 5%;
+  margin-bottom: 50px;
+  margin-top: 50px;
+}
+.search_area input#search{
+  width: 100%;
+  height: 40px;
+  font-size: 10pt;
+  float: left;
+  color: #63717f;
+  padding-left: 10px;
+  border-radius: 20px;
+  display: block;
+  border: solid 1px;
+  transition: background .55s ease;
+}
+.search_area input#search::-webkit-input-placeholder {
+   color: #65737e;
+}
+.search_area input#search:-moz-placeholder { /* Firefox 18- */
+   color: #65737e;
+}
+.search_area input#search::-moz-placeholder {  /* Firefox 19+ */
+   color: #65737e;
+}
+.search_area input#search:-ms-input-placeholder {
+   color: #65737e;
+}
+.search_area .searchIcon{
+  max-width: auto;
+  display: fixed;
+  position: absolute;
+  right: 10px;
+  top: 8px;
+  z-index: 1;
+  color: #4f5b66;
+}
+.search_area input#search:hover, .search_area input#search:focus, .search_area input#search:active{
+    outline:none;
+    background: #f0f0f0;
+}
+/* ====================搜尋列的css終點=============================== */
+
+div.footer{
+  display: block;
+  height: 200px;
+  background-color: gray;
+}
