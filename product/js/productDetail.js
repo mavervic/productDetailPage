@@ -1,8 +1,17 @@
 //網頁載入後要執行的函式
 $(window).on("load", function(){
-  creatPage();
+  createSpc();
   checkStock();
+  createProductDetail();
+  //套裝行程圖片參照商品縮圖
+  let origin = $(".smaller_img").children("img");
+  let ref = $(".introduction_card").find("img");
+  $.each(origin, function(index, item){
+    $(ref[index]).attr("src", $(origin[index]).attr("src"))
+  });
 });
+
+
 
 //查詢並將庫存小於1的按鈕設定為disabled
 function checkStock(){
@@ -13,13 +22,11 @@ function checkStock(){
   });
 }
 
-
-
 //依照商品類型動態產生頁面
-function creatPage(){
-  if($(".product_Class").val()==1){
+function createSpc(){
+  if($(".product_Class").val()=="餐廳"){
     $(".product_spc").children("table").html(typeNoDate);
-  }else if($(".product_Class").val()==2){
+  }else if($(".product_Class").val()=="套裝行程"){
     $(".product_spc").children("table").html(typeDate);
     //初始化日期
     flatpickr(".InputTestStyle",{
@@ -28,6 +35,14 @@ function creatPage(){
       dateFormat: "Y-m-d",
       minDate: "today"
     });
+  }
+}
+
+function createProductDetail(){
+  if($(".product_Class").val()=="套裝行程"){
+    $(".introduction_card").html(travelSet);
+  }else{
+    $(".introduction_card").html(normalProduct);
   }
 }
 
@@ -155,6 +170,11 @@ $(".main_img").children("img").on("click", function(){
   modalImg.src = this.src;
   captionText.innerHTML = this.alt;
 });
+$(document).on("click", ".img_smaller_scheduleLight", function(){
+  modal.style.display = "block";
+  modalImg.src = this.src;
+  captionText.innerHTML = this.alt;
+});
 modal.onclick = function() {
   modal.style.display = "none";
 }
@@ -169,77 +189,3 @@ modal.onclick = function() {
 //     minDate: "today"
 //   });
 // });
-
-
-//injection
-let typeNoDate = `<tr>
-  <td class="spc">
-    選項
-  </td>
-  <td>
-    <button class="btn_option" type="button" name="button">
-      選項111
-      <a class="price">1980</a>
-      <a class="stock">1231</a>
-      <a class="PD_ID">PD000001</a>
-    </button>
-    <button class="btn_option" type="button" name="button">
-      選項2222222
-      <a class="price">2680</a>
-      <a class="stock">23</a>
-      <a class="PD_ID">PD000002</a>
-    </button>
-    <button class="btn_option" type="button" name="button">
-      選項33
-      <a class="price">360</a>
-      <a class="stock">56</a>
-      <a class="PD_ID">PD000003</a>
-    </button>
-    <button class="btn_option" type="button" name="button">
-      選項44，庫存0
-      <a class="price">750</a>
-      <a class="stock">0</a>
-      <a class="PD_ID">PD000004</a>
-    </button>
-    <button class="btn_option" type="button" name="button">
-      選項55555
-      <a class="price">399</a>
-      <a class="stock">45</a>
-      <a class="PD_ID">PD000005</a>
-    </button>
-    <button class="btn_option" type="button" name="button">
-      選項6666666666
-      <a class="price">280</a>
-      <a class="stock">93</a>
-      <a class="PD_ID">PD000006</a>
-    </button>
-  </td>
-</tr>
-<tr>
-  <td>
-    數量
-  </td>
-  <td>
-    <input class="input_quantity" type="number" value="1" name="quantity" min="1" max="99"></input>
-    <a>庫存數量: > 99</a>
-  </td>
-</tr>`;
-
-let typeDate=`<tr>
-　  <td rowspan="1">選項</td>
-　<td><i class="far fa-calendar-alt" style="font-size: 1.5em;"></i></td>
-  <td>起始日期</td>
-  <td><input class="InputTestStyle" name="timeBefore"></td>
-　</tr>
-　<tr>
-  <td></td>
-　<td><i class="far fa-calendar-alt" style="font-size: 1.5em;"></i></td>
-  <td>結束日期</td>
-  <td><input class="InputTestStyle" name="timeBefore"></td>
-　</tr>
-<tr>
-  <td></td>
-  <td style="text-align: center;"><i class="fas fa-male" style="font-size: 1.8em;"></i></td>
-  <td>人數</td>
-  <td><input class="input_quantity" type="number" name="quantity" min="1" value="1"></td>
-</tr>`;

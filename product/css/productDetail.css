@@ -36,15 +36,15 @@ div.main_img{
 }
 div.main_img img{
   max-height: 100%;
-   max-width: 100%;
-   width: auto;
-   height: auto;
-   position: absolute;
-   top: 0;
-   bottom: 0;
-   left: 0;
-   right: 0;
-   margin: auto;
+  max-width: 100%;
+  width: auto;
+  height: auto;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
 }
 div.smaller_img{
   width: 100%;
@@ -151,8 +151,6 @@ button.btn_filter.-on{
   border: none;
   border-radius: 4px;
 }
-
-
 div.rating_card{
   margin-top: 10px ;
   margin-bottom: 10px;
@@ -203,6 +201,60 @@ img.comment_img{
 }
 
 img.comment_img:hover{
+  opacity: 0.7;
+}
+hr{
+  height: 2px !important;
+  background-color: #E6903B;
+}
+h3{
+  margin-top: 30px !important;
+}
+div.img_scheduleLight{
+  margin-top: 20px;
+}
+div.img_scheduleLight img{
+  max-height: 100%;
+  max-width: 100%;
+  width: auto;
+  height: auto;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+img.img_smaller_scheduleLight{
+  width: 100%;
+}
+table.scheduleContent tr td{
+  padding: 10px 5px;
+  /* border: 1px blue solid; */
+}
+
+div.ref_img img{
+  max-height: 100%;
+  max-width: 100%;
+  width: auto;
+  height: auto;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  transition: 0.2s;
+}
+
+div.ref_img{
+  height: 200px;
+  width: 100%;
+  position: relative;
+  background-color: black;
+}
+
+div.ref_img img:hover{
   opacity: 0.7;
 }
 
@@ -277,14 +329,7 @@ img.comment_img:hover{
     width: 100%;
   }
 }
-
-
-
-
-
 /* ====================燈箱終點==================== */
-
-
 
 
 /* ====================Pagination起點==================== */
@@ -324,8 +369,6 @@ div.pagination{
   background-color: #ddd;
 }
 /* ====================Pagination終點==================== */
-
-
 
 
 /* ====================搜尋列的css起點==================== */
