@@ -1,0 +1,7 @@
+table, tr, td, th{
+  border: 1px solid blue;
+}
+
+.col-md-1, col-md-3 div{
+  border: 1px solid blue;
+}
