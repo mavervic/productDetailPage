@@ -14,10 +14,10 @@
   </head>
   <body>
     <div class="container">
-      <div class="row justify-content-end">
+      <div class="row">
         <div class="col-md-6">
           <div class="search_area">
-        		<i class="fas fa-shopping-cart"></i>購物車
+            <h3><i class="fas fa-shopping-cart" style="font-size:2em"></i>購物車</h3>
         	</div>
         </div>
         <div class="col-md-6">
@@ -28,83 +28,266 @@
         </div>
       </div>
 
+      <!-- 搜尋用戶在redis的購物車再比對oracle商品資料，
+      動態產生商品選項及庫存數量，
+      若原加入購物車時的數量超過商品庫存量則覆寫回來
+      若原加入購物車時的商品選項已經不存在則表示物品失效 -->
       <div class="row justify-content-center">
-        <div class="col-md-1">
-          <div class="">
-            <input type="checkbox" name="" value="">
-          </div>
-        </div>
-        <div class="col-md-1">
-          <div class="">
-            預覽圖
-          </div>
-        </div>
-        <div class="col-md-3">
-          <div class="">
-            商品名稱
-          </div>
-        </div>
-        <div class="col-md-1">
-          <div class="">
-            選擇
-          </div>
-        </div>
-        <div class="col-md-1">
-          <div class="">
-            單價
-          </div>
-        </div>
-        <div class="col-md-1">
-          <div class="">
-            數量
-          </div>
-        </div>
-        <div class="col-md-1">
-          <div class="">
-            小計
-          </div>
-        </div>
-        <div class="col-md-1">
-          <div class="">
-            刪除
-          </div>
-        </div>
-        <div class="col-md-1">
-          <div class="">
-            詢問
-          </div>
-        </div>
-
-        <!-- <div class="col-md-4">
+        <div class="col-md-12 shoppingCar">
           <table>
+            <!-- =======================標題欄======================= -->
             <tr>
-
-              <th></th>
+              <th style="width: 6%;"><input class="selectAll" type="checkbox" name="" value=""></th>
               <th>預覽圖</th>
               <th>商品名稱</th>
               <th>選擇</th>
               <th>單價</th>
               <th>數量</th>
               <th>小計</th>
-              <th>刪除</th>
-              <th>詢問</th>
+              <th style="width: 7%;">詢問</th>
+              <th style="width: 7%;">刪除</th>
+            </tr>
+
+            <!-- =======================商品======================= -->
+            <tr>
+              <td><input class="selectOne" type="checkbox" name="" value=""></td>
+              <td>
+                <div class="img_area">
+                  <a href="#"><img class="img_Preview" src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRlHYMzh5mYwX_ag7DrgR2NrWYb8PGvDd2gkM2OW4AoO2VDVmbY&usqp=CAU" alt=""></a>
+                </div>
+              </td>
+              <td><a href="#" style="color: black;">231231321231132</a></td>
+              <td>
+                <div class="spc">
+                  <select class="" name="">
+                    <option value="">一二三四五六七八九十</option>
+                    <option value="">一二三四五六七八九十</option>
+                  </select>
+                </div>
+              </td>
+              <td class="price">98800</td>
+              <td>
+                <div class="quantity">
+                  <input class="input_quantity" type="number" name="" value="1" min="1" max="">
+                </div>
+              </td>
+              <td class="subtotal"></td>
+              <td>
+                <button type="button" name="button" STYLE="background-color: transparent; border:2px blue none; outline:none;">
+                  <i class="far fa-envelope" style="font-size:1.5em"></i>
+                </button>
+              </td>
+              <td>
+                <button type="button" name="button" STYLE="background-color: transparent; border:2px blue none; outline:none;">
+                  <i class="fas fa-trash-alt" style="font-size:1.5em"></i>
+                </button>
+              </td>
             </tr>
             <tr>
-              <td><input type="checkbox" name="" value=""></td>
-              <td>456</td>
-              <td>456</td>
-              <td>456</td>
-              <td>456</td>
-              <td>456</td>
-              <td>456</td>
-              <td>456</td>
-              <td>456</td>
-              <td>456</td>
+              <td></td>
+            </tr>
+
+
+            <tr>
+              <td><input class="selectOne" type="checkbox" name="" value=""></td>
+              <td>
+                <div class="img_area">
+                  <a href="#"><img class="img_Preview" src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRlHYMzh5mYwX_ag7DrgR2NrWYb8PGvDd2gkM2OW4AoO2VDVmbY&usqp=CAU" alt=""></a>
+                </div>
+              </td>
+              <td><a href="#" style="color: black;">231231321231132</a></td>
+              <td>
+                <div class="spc">
+                  <select class="" name="">
+                    <option value="">一二三四五六七八九十</option>
+                    <option value="">一二三四五六七八九十</option>
+                  </select>
+                </div>
+              </td>
+              <td class="price">98800</td>
+              <td>
+                <div class="quantity">
+                  <input class="input_quantity" type="number" name="" value="1" min="1" max="">
+                </div>
+              </td>
+              <td class="subtotal"></td>
+              <td>
+                <button type="button" name="button" STYLE="background-color: transparent; border:2px blue none; outline:none;">
+                  <i class="far fa-envelope" style="font-size:1.5em"></i>
+                </button>
+              </td>
+              <td>
+                <button type="button" name="button" STYLE="background-color: transparent; border:2px blue none; outline:none;">
+                  <i class="fas fa-trash-alt" style="font-size:1.5em"></i>
+                </button>
+              </td>
+            </tr>
+            <tr>
+              <td></td>
+            </tr>
+
+
+
+            <tr class="failureArea">
+              <th style="width: 6%;"><input class="selectFailureAll" type="checkbox" name="" value=""></th>
+              <th>預覽圖</th>
+              <th colspan="5">失效商品</th>
+              <th>詢問</th>
+              <th>刪除</th>
+            </tr>
+
+
+
+            <tr>
+              <td><input class="selectFailureOne" type="checkbox" name="" value=""></td>
+              <td>
+                <div class="img_area">
+                  <a href="#"><img class="img_Preview" src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRlHYMzh5mYwX_ag7DrgR2NrWYb8PGvDd2gkM2OW4AoO2VDVmbY&usqp=CAU" alt=""></a>
+                </div>
+              </td>
+              <td colspan="5"><a href="#" style="color: black;">231231321231132</a></td>
+              <td>
+                <button type="button" name="button" STYLE="background-color: transparent; border:2px blue none; outline:none;">
+                  <i class="far fa-envelope" style="font-size:1.5em"></i>
+                </button>
+              </td>
+              <td>
+                <button type="button" name="button" STYLE="background-color: transparent; border:2px blue none; outline:none;">
+                  <i class="fas fa-trash-alt" style="font-size:1.5em"></i>
+                </button>
+              </td>
             </tr>
           </table>
-        </div> -->
+        </div>
       </div>
 
+      <div class="row justify-content-center">
+        <div class="col">
+          <div class="">
+            <button class="removeSelect" type="button" name="button">刪除勾選的商品</button>
+            <button class="removeFailure" type="button" name="button">清除全部失效商品</button>
+            <hr>
+          </div>
+        </div>
+      </div>
+      <div class="row justify-content-end">
+        <div class="col-3">
+          <div class="">
+            <a>購買總金額</a>
+            <a>N個商品: $</a>
+            <a>123456</a>
+          </div>
+        </div>
+        <div class="col-2">
+          <div class="">
+            <button class="checkout" type="button" name="button">確認結帳</button>
+            <hr>
+          </div>
+        </div>
+      </div>
+
+
+
+
+
+
+
+      <!-- <div class="row">
+
+        <div id="title" class="col-{breakpoint}-auto">
+          <div class="">
+            <input type="checkbox" name="" value="">
+          </div>
+        </div>
+        <div id="title" class="col-md-2">
+          <div class="">
+            預覽圖
+          </div>
+        </div>
+        <div id="title" class="col-md-3">
+          <div class="">
+            商品名稱
+          </div>
+        </div>
+        <div id="title" class="col-md-1">
+          <div class="">
+            選擇
+          </div>
+        </div>
+        <div id="title" class="col-md-1">
+          <div class="">
+            單價
+          </div>
+        </div>
+        <div id="title" class="col-md-1">
+          <div class="">
+            數量
+          </div>
+        </div>
+        <div id="title" class="col-md-1">
+          <div class="">
+            小計
+          </div>
+        </div>
+        <div id="title" class="col-md-1">
+          <div class="">
+            刪除
+          </div>
+        </div>
+        <div id="title" class="col-md-1">
+          <div class="">
+            詢問
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div id="title" class="col-{breakpoint}-auto">
+          <div class="">
+            <input type="checkbox" name="" value="">
+          </div>
+        </div>
+        <div id="goods" class="col-md-2">
+          <div class="img_Preview">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRlHYMzh5mYwX_ag7DrgR2NrWYb8PGvDd2gkM2OW4AoO2VDVmbY&usqp=CAU" alt="">
+          </div>
+        </div>
+        <div id="goods" class="col-md-3">
+          <div class="">
+            我是商品名稱我是商品名稱我是商品名稱我是商品名稱
+          </div>
+        </div>
+        <div id="goods" class="col-md-1">
+          <div class="spc">
+            <input type="text" name="" value="">
+          </div>
+        </div>
+        <div id="goods" class="col-md-1">
+          <div class="">
+            5980
+          </div>
+        </div>
+        <div id="goods" class="col-md-1">
+          <div class="">
+            2
+          </div>
+        </div>
+        <div id="goods" class="col-md-1">
+          <div class="">
+            小計
+          </div>
+        </div>
+        <div id="goods" class="col-md-1">
+          <div class="">
+            <i class="fas fa-trash-alt" style="font-size:1.5em"></i>
+          </div>
+        </div>
+        <div id="goods" class="col-md-1">
+          <div class="">
+            <i class="far fa-envelope" style="font-size:1.5em"></i>
+          </div>
+        </div>
+      </div> -->
 
 
       </div>
