@@ -61,7 +61,7 @@
                 <div class="spc">
                   <select class="" name="">
                     <option value="">一二三四五六七八九十</option>
-                    <option value="">一二三四五六七八九</option>
+                    <option value="" selected>一二三四五六七八九</option>
                   </select>
                 </div>
               </td>
@@ -78,14 +78,12 @@
                 </button>
               </td>
               <td>
-                <button type="button" name="button" STYLE="background-color: transparent; border:2px blue none; outline:none;">
+                <button class="removeOne" type="button" name="button" STYLE="background-color: transparent; border:2px blue none; outline:none;">
                   <i class="fas fa-trash-alt" style="font-size:1.5em"></i>
                 </button>
               </td>
             </tr>
-            <tr>
-              <td></td>
-            </tr>
+
 
 
             <tr>
@@ -117,7 +115,7 @@
                 </button>
               </td>
               <td>
-                <button type="button" name="button" STYLE="background-color: transparent; border:2px blue none; outline:none;">
+                <button class="removeOne" type="button" name="button" STYLE="background-color: transparent; border:2px blue none; outline:none;">
                   <i class="fas fa-trash-alt" style="font-size:1.5em"></i>
                 </button>
               </td>
@@ -136,7 +134,7 @@
               <th>刪除</th>
             </tr>
 
-            <tr>
+            <tr class="failureItem">
               <td><input class="selectFailureOne" type="checkbox" name="" value=""></td>
               <td>
                 <div class="img_area">
@@ -150,7 +148,7 @@
                 </button>
               </td>
               <td>
-                <button type="button" name="button" STYLE="background-color: transparent; border:2px blue none; outline:none;">
+                <button class="removeOne" type="button" name="button" STYLE="background-color: transparent; border:2px blue none; outline:none;">
                   <i class="fas fa-trash-alt" style="font-size:1.5em"></i>
                 </button>
               </td>
@@ -164,7 +162,7 @@
 
       <div class="row justify-content-center">
         <div class="col">
-          <div class="">
+          <div class="removeArea">
             <button class="removeSelect" type="button" name="button">刪除勾選的商品</button>
             <button class="removeFailure" type="button" name="button">清除全部失效商品</button>
             <hr>
@@ -172,7 +170,7 @@
         </div>
       </div>
       <div class="row justify-content-end">
-        <div class="col-4">
+        <div class="col-md-4">
           <div class="">
             <a>購買(</a>
             <a class="sumQuantity"></a>
@@ -181,7 +179,7 @@
             <a class="sumPrice"></a>
           </div>
         </div>
-        <div class="col-2">
+        <div class="col-md-2">
           <div class="">
             <button class="checkout" type="button" name="button">確認結帳</button>
             <hr>

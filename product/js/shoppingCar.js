@@ -17,55 +17,60 @@ function subtotal(){
   }
 }
 
-
-
 // 選中的商品結算
 function prepareCheckout(){
   let price = 0;
   let count = 0;
   $(".sumPrice").html(0);
   $(".sumQuantity").html(0);
-  $(".selectOne").each(function(){
-    if(this.checked==true){
-      price += parseInt($(this).closest("tr").find(".subtotal").html());
-      count += parseInt($(this).closest("tr").find(".input_quantity").val());
-      $(".sumPrice").html(price);
-      $(".sumQuantity").html(count);
-      // console.log(count);
-      // console.log(price);
-    }
+  $(".selectOne:checked").each(function(){
+    price += parseInt($(this).closest("tr").find(".subtotal").html());
+    count += parseInt($(this).closest("tr").find(".input_quantity").val());
+    $(".sumPrice").html(price);
+    $(".sumQuantity").html(count);
+    // console.log(count);
+    // console.log(price);
   });
 }
 
+// 刪除勾選的商品
+$(".removeSelect").on("click", function(){
+  $(".selectOne:checked").each(function(){
+    $(this).closest("tr").remove();
+    reverseCheckbox();
+  });
+});
 
+//刪除單一商品
+$(".removeOne").on("click", function(){
+  $(this).closest("tr").remove();
+});
 
-
-
+// 刪除失效商品
+$(".removeFailure").on("click", function(){
+  $(".failureItem").remove();
+});
 
 
 // checkbox全選
 $(".selectAll").on("click", function(){
-  for(let i=0; i<$(".selectOne").length; i++){
-    $(".selectOne")[i].checked = $(this)[0].checked;
-  }
+  $(".selectOne").each(function(){
+    $(".selectOne").prop("checked", $(".selectAll").prop("checked"))
+  });
 });
 
 // reverseCheckbox
 function reverseCheckbox(){
-  let count = 0;
-  $(".selectOne").each(function(){
-    if(this.checked==true){
-      count++
+  if($(".selectOne").length>0){
+    if($(".selectOne").length == $(".selectOne:checked").length){
+      $(".selectAll").prop("checked", true);
+    }else {
+      $(".selectAll").prop("checked", false);
     }
-  });
-  if($(".selectOne").length == count){
-    $(".selectAll").prop("checked", true);
   }else {
     $(".selectAll").prop("checked", false);
   }
 }
-
-
 
 $(".selectFailureAll").on("click", function(){
   for(let i=0; i<$(".selectFailureOne").length; i++){
