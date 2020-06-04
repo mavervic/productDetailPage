@@ -3,6 +3,8 @@ $(window).on("load", function(){
   createSpc();
   checkStock();
   createProductDetail();
+  loadStar();
+
   //套裝行程圖片參照商品縮圖
   let origin = $(".smaller_img").children("img");
   let ref = $(".introduction_card").find("img");
@@ -10,8 +12,6 @@ $(window).on("load", function(){
     $(ref[index]).attr("src", $(origin[index]).attr("src"))
   });
 });
-
-
 
 //查詢並將庫存小於1的按鈕設定為disabled
 function checkStock(){
@@ -29,7 +29,7 @@ function createSpc(){
   }else if($(".product_Class").val()=="套裝行程"){
     $(".product_spc").children("table").html(typeDate);
     //初始化日期
-    flatpickr(".InputTestStyle",{
+    flatpickr(".inputCalendar",{
       altInput: false,
       altFormat: "F j, Y",
       dateFormat: "Y-m-d",
@@ -38,6 +38,33 @@ function createSpc(){
   }
 }
 
+//起始日不會大於結束日
+$(document).on("change", "input.start", function(){
+  let foo = $("input.start").val();
+  let bar = $("input.end").val();
+  if(foo != "" && bar == ""){
+    flatpickr("input.end",{
+      altInput: false,
+      altFormat: "F j, Y",
+      dateFormat: "Y-m-d",
+      minDate: $("input.start").val()
+    });
+  }else if (foo != "" && bar != "") {
+    foo = Date.parse(foo).valueOf();
+    bar = Date.parse(bar).valueOf();
+    if(foo > bar){
+      flatpickr("input.end",{
+        altInput: false,
+        altFormat: "F j, Y",
+        dateFormat: "Y-m-d",
+        minDate: $("input.start").val()
+      });
+    }
+  }
+});
+
+
+//動態產生商品詳情
 function createProductDetail(){
   if($(".product_Class").val()=="套裝行程"){
     $(".introduction_card").html(travelSet);
@@ -48,7 +75,7 @@ function createProductDetail(){
 
 //確保數量最低在1
 $(document).on("blur", ".input_quantity", function(){
-  if(!$(this).val()>=1){
+  if(!$(this).val()<1){
     $(this).val("1");
   }
 });
@@ -84,7 +111,7 @@ $(document).on("click", "button.btn_option", function(){
   }
 });
 
-// 評論篩選
+// 評論篩選的按鈕樣式相關
 $("td.filter_area").children("button").on("click", function(){
   if($(this).is(".-on")){
     $(this).toggleClass("-on");
@@ -94,6 +121,41 @@ $("td.filter_area").children("button").on("click", function(){
     $(this).toggleClass("-on");
   }
 });
+
+//依照評分動態產生星號
+function loadStar(){
+  $(".score").each(function(index, item){
+    let j = $(this).html();
+    let star = ""
+    for(let i=0; i<j; i++){
+      star += `<i class="fas fa-star" style="color:#FFDD26;"></i>`;
+    }
+    for(let i=0; i<5-j; i++){
+      star += `<i class="far fa-star" style="color:#FFDD26;"></i>`;
+    }
+    $(this).next("p").html(star);
+  });
+}
+
+//依照評分篩選評論
+$(".btn_filter").on("click", function(){
+  $(".comment_card").css("display", "flex");
+  let foo = $(this).data("filter")
+  $(".comment_card").each(function(){
+    let bar = $(this).find(".score").html();
+    if(foo == "all"){
+      $(this).css("display", "flex");
+    }else if (foo == "hasImg") {
+      if($(this).find(".comment_img").attr("src") == ""){
+        $(this).css("display", "none");
+      }
+
+    }else if (foo != bar) {
+      $(this).css("display", "none");
+    }
+  });
+});
+
 
 //搜尋欄
 $("span.searchIcon").children("i").on("click", function(){
@@ -119,8 +181,7 @@ $("#search").on("keyup", function(e) {
 
 //加入購物車
 $("button.addCar").on("click", function(){
-  console.log($(".product_Class").val());
-  if($(".product_Class").val()==1 && $("div.product_spc").find("button.-on").length!=1){
+  if($(".product_Class").val()=="餐廳" && $("div.product_spc").find("button.-on").length!=1){
     swal({
       position: 'top-end',
       icon: 'error',
@@ -128,11 +189,16 @@ $("button.addCar").on("click", function(){
       showConfirmButton: false,
       timer: 1500
     });
-  }else if ($(".product_Class").val()==2) {
-    $.each($(".InputTestStyle"), function(index, item){
-      console.log($(item).val());
+  }else if ($(".product_Class").val()=="套裝行程" && $(".inputCalendar")[0].value=="" || $(".inputCalendar")[1].value=="") {
+    swal({
+      position: 'top-end',
+      icon: 'error',
+      title: '請先選擇商品規格',
+      showConfirmButton: false,
+      timer: 1500
     });
-  }else{
+  }else{ //正確加入
+    console.log($(".product_Class").val());
     let price = $("div.product_spc").find("button.-on").children("a.price").html();
     let quantity = $("input.input_quantity").val();
   }
@@ -178,14 +244,3 @@ $(document).on("click", ".img_smaller_scheduleLight", function(){
 modal.onclick = function() {
   modal.style.display = "none";
 }
-
-//日期
-// $(document).on("mouseenter", ".InputTestStyle", function(){
-//   let a = $(this)
-//   flatpickr(".InputTestStyle",{
-//     altInput: false,
-//     altFormat: "F j, Y",
-//     dateFormat: "Y-m-d",
-//     minDate: "today"
-//   });
-// });
