@@ -38,6 +38,10 @@ tr{
   width: 100%;
 }
 
+select{
+  width: 100%;
+}
+
 .img_area{
   background-color: black;
 }
