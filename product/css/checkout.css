@@ -10,13 +10,15 @@ div.coupon{
   padding: 20px 0px;
   box-shadow: 0px 5px 3px 0px #cccccc;
 }
-.coupon button{
+
+.choiceCoupon{
   width: 80%;
-  height: 32px;
+  height: 100%;
   background: white;
   border: none;
   border-radius: 4px;
 }
+
 
 div.payments{
   background-color: white;
@@ -25,7 +27,7 @@ div.payments{
   box-shadow: 0px 5px 3px 0px #cccccc;
 }
 
-.payments button{
+.btn_payments {
   width: 80px;
   height: 32px;
   background: #E5B280;
@@ -34,7 +36,11 @@ div.payments{
   border-radius: 4px;
 }
 
-.payments button:hover{
+.btn_payments:hover{
+  background: #E6903B;
+}
+
+.-on{
   background: #E6903B;
 }
 
@@ -106,7 +112,7 @@ hr{
   background-color: #E6903B;
 }
 
-.subtotal{
+.subtotalAgain{
   text-align: right;
   padding: 10px;
   box-shadow: 0px 5px 3px 0px #cccccc;
@@ -123,7 +129,7 @@ div.previewImg{
 /* ====================彈出視窗的css起點==================== */
 /* The Modal (background) */
 .modal {
-  display: block; /* Hidden by default */
+  display: none; /* Hidden by default */
   position: fixed; /* Stay in place */
   z-index: 1; /* Sit on top */
   padding-top: 100px; /* Location of the box */
@@ -133,33 +139,13 @@ div.previewImg{
   height: 100%; /* Full height */
   overflow: auto; /* Enable scroll if needed */
   background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
-}
-
-/* Modal Content (Image) */
-.modal-content {
-  margin: auto;
-  display: block;
-  width: 80%;
-  max-width: 700px;
-}
-
-/* Caption of Modal Image (Image Text) - Same Width as the Image */
-#caption {
-  margin: auto;
-  display: block;
-  width: 80%;
-  max-width: 700px;
-  text-align: center;
-  color: #ccc;
-  padding: 10px 0;
-  height: 150px;
+  background-color: rgba(0,0,0,0.2); /* Black w/ opacity */
 }
 
 /* Add Animation - Zoom in the Modal */
-.modal-content, #caption {
+.box, #caption {
   animation-name: zoom;
-  animation-duration: 0.6s;
+  animation-duration: 0.3s;
 }
 
 @keyframes zoom {
@@ -185,15 +171,7 @@ div.previewImg{
   cursor: pointer;
 }
 
-/* 100% Image Width on Smaller Screens */
-@media only screen and (max-width: 700px){
-  .modal-content {
-    width: 100%;
-  }
-}
-
-
-/* =========彈出視窗內的割版========= */
+/* =========彈出視窗內的割版起點========= */
 .box {
   font-size: 20px;
   color: black;
@@ -219,6 +197,7 @@ div.previewImg{
 
 .couponCode{
   background-color: #556FFF;
+  color: white;
   width: 160px;
   border: none;
   border-radius: 4px;
@@ -226,6 +205,7 @@ div.previewImg{
 
 .cancel{
   background-color: #E5B280;
+  color: white;
   width: 120px;
   height: 40px;
   border: none;
@@ -236,6 +216,18 @@ div.previewImg{
 
 .confirm{
   background-color: #E6903B;
+  color: white;
+  width: 120px;
+  height: 40px;
+  border: none;
+  border-radius: 4px;
+  float: right;
+  margin: 20px;
+}
+
+.registerCreditcard{
+  background-color: #E6903B;
+  color: white;
   width: 120px;
   height: 40px;
   border: none;
@@ -274,7 +266,111 @@ div.previewImg{
   background-color: white;
   border: none;
 }
+
+.couponDetail{
+  display: none;
+  padding: 30px;
+  font-size: 20px;
+  color: black;
+  background-color: white;
+  width: 600px;
+  height: 620px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin: -310px 0 0 -300px;
+}
+.couponName {
+  background-color: #31C7D2;
+  border-radius: 8px;
+  padding: 15px;
+  margin: 20px 0px;
+  height: 60px;
+  text-align: center;
+  box-shadow: 3px 5px 3px 2px #cccccc;
+}
+
+.couponDetail button{
+  width: 150px;
+  height: 45px;
+  background-color: #E6903B;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  margin: 0 0 0 -60px;
+}
+
+/* =========彈出視窗內的割版終點========= */
 /* ====================彈出視窗的css終點==================== */
+
+.modal1 {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.2); /* Black w/ opacity */
+}
+
+/* Modal Content (Image) */
+.modal-content {
+  margin: auto;
+  display: block;
+  width: 80%;
+  max-width: 700px;
+}
+
+@keyframes zoom {
+  from {transform:scale(0)}
+  to {transform:scale(1)}
+}
+
+/* The Close Button */
+.close {
+  position: absolute;
+  top: 15px;
+  right: 35px;
+  color: #f1f1f1;
+  font-size: 40px;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.close:hover,
+.close:focus {
+  color: #bbb;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* 100% Image Width on Smaller Screens */
+/* @media only screen and (max-width: 700px){
+  .modal-content {
+    width: 100%;
+  }
+} */
+
+.form_credicard{
+  padding: 0px 20px;
+}
+
+.form_credicard input{
+  margin: 10px 0px;
+  padding: 10px;
+  width: 100%;
+}
+
+input.mm, input.yyyy, input.cvv{
+  width: 30%;
+}
 
 
 /* ====================搜尋列的css起點==================== */
@@ -333,9 +429,4 @@ div.previewImg{
   text-align: left;
 }
 
-.column2{
-  /* padding: 5px !important; */
-  /* width: 60%; */
-  text-align: right;
-}
 /* ====================搜尋列的css終點=============================== */

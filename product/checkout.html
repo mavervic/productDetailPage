@@ -40,39 +40,46 @@
               <th class="">數量</th>
               <th class="">小計</th>
             </tr>
-            <tr>
+            <tr class="orderOne">
               <td style="width:10%;" class="">
                 <div class="previewImg">
                   <img src="https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/iphone-se-red-select-2020?wid=940&hei=1112&fmt=png-alpha&qlt=80&.v=1586574260319" alt="">
                 </div>
               </td>
               <td class="">iphone XD</td>
-              <td class="">8G 128GB</td>
-              <td class="">9980</td>
-              <td class="">1</td>
-              <td class="">9980</td>
+              <td class="" data-productDetail_ID="">8G 128GB</td>
+              <td class="price">9980</td>
+              <td class="quantity">1</td>
+              <td class="subtotal"></td>
             </tr>
             <tr>
-              <td colspan="6" class="subtotal">訂單金額(n個商品): NT:9980<hr></td>
-            </tr>
-            <tr>
-              <td style="width:10%;" class="">
-                <div class="previewImg">
-                  <img src="https://e.ecimg.tw/items/DHAFFNA9009Z942/000001_1558349844.jpg" alt="">
-                </div>
-              </td>
-              <td class="">iphone XD</td>
-              <td class="">8G 128GB</td>
-              <td class="">9980</td>
-              <td class="">1</td>
-              <td class="">9980</td>
-            </tr>
-            <tr>
-              <td colspan="6" class="subtotal">
-                訂單金額(n個商品): NT:9980
+              <td colspan="6" class="subtotalAgain">
+                訂單金額(<span class="span_quantity"></span>個商品)
+                NT:<span class="span_subtotal"></span>
                 <hr>
               </td>
             </tr>
+
+            <tr class="orderOne">
+              <td style="width:10%;" class="">
+                <div class="previewImg">
+                  <img src="https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/iphone-se-red-select-2020?wid=940&hei=1112&fmt=png-alpha&qlt=80&.v=1586574260319" alt="">
+                </div>
+              </td>
+              <td class="">iphone XD</td>
+              <td class="" data-productDetail_ID="">8G 128GB</td>
+              <td class="price">9980</td>
+              <td class="quantity">3</td>
+              <td class="subtotal"></td>
+            </tr>
+            <tr>
+              <td colspan="6" class="subtotalAgain">
+                訂單金額(<span class="span_quantity"></span>個商品)
+                NT:<span class="span_subtotal"></span>
+                <hr>
+              </td>
+            </tr>
+
           </table>
         </div>
       </div>
@@ -82,7 +89,7 @@
           優惠券
         </div>
         <div class="col-4">
-          <a>優惠券名稱優惠券名稱優惠券名稱</a>
+          <a class="selectedCoupon">尚未選擇優惠券</a>
         </div>
         <div class="col-5">
             <button class="choiceCoupon" type="button" name="button">選擇優惠券或輸入折扣碼</button>
@@ -90,21 +97,21 @@
       </div>
 
       <div class="row payments">
-        <div class="col-3">
+        <div class="col-12 col-md-3">
           付款方式
         </div>
-        <div class="col-9">
-          <button type="button" name="button">信用卡</button>
-          <button type="button" name="button">銀行轉帳</button>
-          <button type="button" name="button">手機支付</button>
+        <div class="col-12 col-md-9">
+          <button class="btn_payments credicard" type="button" name="button">信用卡</button>
+          <button class="btn_payments transfer" type="button" name="button">銀行轉帳</button>
+          <button class="btn_payments mobilePay" type="button" name="button">手機支付</button>
         </div>
       </div>
 
       <div class="row choiceAccount">
-        <div class="col-3">
+        <!-- <div class="col-12 col-md-3">
           選擇付款帳戶
         </div>
-        <div class="col-9">
+        <div class="col-12 col-md-9">
           <div class="">
             <label>
               <input type="radio" name="1" value=""><i class="fab fa-cc-visa" style="font-size: 2em;"></i>
@@ -126,14 +133,14 @@
           <div class="">
             <button type="button" name="button">++使用新信用卡付款</button>
           </div>
-        </div>
+        </div> -->
       </div>
 
       <div class="row justify-content-end checkout">
-        <div class="col-4">
-          <p>商品總額: <span class=""></span></p>
-          <p>折抵金額: <span class=""></span></p>
-          <p>應付金額: <span class=""></span></p>
+        <div class="col-12 col-md-4">
+          <p>商品總額: <span class="tottleAmount"></span></p>
+          <p>折抵金額: <span class="discount">0</span></p>
+          <h5>應付金額: <span class="shouldPay"></span></h5>
           <button type="button" name="button">下訂單</button>
         </div>
       </div>
@@ -145,6 +152,8 @@
     <!-- container -->
     </div>
 
+
+    <!-- 優惠券選擇起點 -->
     <div id="myModal" class="modal">
       <div class="box">
         <h4 class="couponTittle">選擇優惠券</h4>
@@ -161,33 +170,72 @@
               </tr>
             </thead>
             <tbody>
-              <tr>
+              <tr data-coupon_ID="123">
                 <td class="column1">
                   <label>
-                    <input type="radio" name="1">
+                    <input class="radioCoupon" type="radio" name="1" data-discount="0.85">
                     <a>八折優惠券</a>
                   </label>
                 </td>
                 <td class="column3">
-                  <button type="button" name="button">優惠券使用詳情</button>
+                  <button class="callDetail" type="button" name="button">優惠券使用詳情</button>
               </tr>
-
-
+              <tr data-coupon_ID="456">
+                <td class="column1">
+                  <label>
+                    <input class="radioCoupon" type="radio" name="1" data-discount="0.75">
+                    <a>七折優惠券</a>
+                  </label>
+                </td>
+                <td class="column3">
+                  <button class="callDetail" type="button" name="button">優惠券使用詳情</button>
+              </tr>
             </tbody>
           </table>
-
-
         </div>
+
         <div>
           <button class="cancel" type="button">取消</button>
           <button class="confirm" type="button">確定</button>
         </div>
-        <div></div>
+      </div>
+
+
+      <div class="couponDetail">
+        <h4>優惠券說明</h4>
+        <div class="couponName">
+          <a>======優惠券名稱=====</a>
+        </div>
+        <a>Ajax取得使用方法Ajax取得使用方法Ajax取得使用方法Ajax取得使用方法</a>
+        <div class="goBack">
+          <button class="btn_GoBack" type="button" name="button">返回</button>
+        </div>
+      </div>
+    </div>
+    <!-- 優惠券選擇終點 -->
+
+    <!-- 新增信用卡起點 -->
+    <div id="myModal1" class="modal1">
+      <div class="box">
+        <h4 class="couponTittle">新增信用卡</h4>
+        <form class="form_credicard" action="#" method="post">
+          <input type="text" name="" value="" placeholder="持卡人姓名" required>
+          <input type="text" name="" value="" placeholder="信用卡號碼xxxx-xxxx-xxxx-xxxx" required>
+          <input class="mm" type="text" name="" value="" placeholder="月份MM" required>
+          <input class="yyyy" type="text" name="" value="" placeholder="年份YYYY" required>
+          <input class="cvv" type="text" name="" value="" placeholder="CVV3碼" required>
+          <input type="text" name="" value="" placeholder="帳單地址" required>
+          <input type="text" name="" value="" placeholder="郵遞區號" required>
+          <p>We partner with AirPay to ensure that your credit card details
+              are kept safe and secure. Shopee will not have access to
+              your credit card info.</p>
+          <button class="cancel" type="button">取消</button>
+          <button class="registerCreditcard" type="submit" name="button">確定</button>
+        </form>
       </div>
       <span class="close">&times;</span>
-      <img class="modal-content" id="img01">
-      <div id="caption"></div>
     </div>
+    <!-- 新增信用卡終點 -->
 
     <script src="/js/checkout.js"></script>
   </body>
