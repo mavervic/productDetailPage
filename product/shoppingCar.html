@@ -32,7 +32,7 @@
       動態產生商品選項及庫存數量，
       若原加入購物車時的數量超過商品庫存量則覆寫回來
       若原加入購物車時的商品選項已經不存在則表示物品失效 -->
-      <div class="row justify-content-center">
+      <div class="row itemTable justify-content-center">
         <div class="col-12 shoppingCar">
           <table>
             <!-- =======================標題欄======================= -->
@@ -60,8 +60,8 @@
               <td>
                 <div class="spc">
                   <select class="" name="">
-                    <option value="">一二三四五六七八九十</option>
-                    <option value="">一二三四五六七八九</option>
+                    <option value="" data-pd_ID="pd_ID000001" data-price="10000">一二三四五六七八九十</option>
+                    <option value="" data-pd_ID="pd_ID000002" data-price="2000" selected>AAAAAAAAAAAA</option>
                   </select>
                 </div>
               </td>
@@ -83,8 +83,6 @@
                 </button>
               </td>
             </tr>
-
-
 
             <tr>
               <td><input class="selectOne" type="checkbox" name="" value=""></td>
@@ -97,8 +95,8 @@
               <td>
                 <div class="spc">
                   <select class="" name="">
-                    <option value="">一二三四五六七八九十</option>
-                    <option value="">一二三四五六七八九十</option>
+                    <option value="" data-pd_ID="pd_ID000003" data-price="300">一二三四五六七八九十</option>
+                    <option value="" data-pd_ID="pd_ID000004" data-price="400">一二三四五六七八九十</option>
                   </select>
                 </div>
               </td>
@@ -120,14 +118,14 @@
                 </button>
               </td>
             </tr>
-            <tr>
-              <td></td>
-            </tr>
-
 
             <!-- ============失效商品=========== -->
+            <tr class="gap">
+              <td></td>
+            </tr>
             <tr class="failureArea">
-              <th style="width: 6%;"><input class="selectFailureAll" type="checkbox" name="" value=""></th>
+              <th></th>
+              <!-- <th style="width: 6%;"><input class="selectFailureAll" type="checkbox" name="" value=""></th> -->
               <th>預覽圖</th>
               <th colspan="5">失效商品</th>
               <th>詢問</th>
@@ -135,7 +133,29 @@
             </tr>
 
             <tr class="failureItem">
-              <td><input class="selectFailureOne" type="checkbox" name="" value=""></td>
+              <td></td>
+              <!-- <td><input class="selectFailureOne" type="checkbox" name="" value=""></td> -->
+              <td>
+                <div class="img_area">
+                  <a href="#"><img class="img_Preview" src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRlHYMzh5mYwX_ag7DrgR2NrWYb8PGvDd2gkM2OW4AoO2VDVmbY&usqp=CAU" alt=""></a>
+                </div>
+              </td>
+              <td colspan="5"><a href="#" style="color: black;">231231321231132</a></td>
+              <td>
+                <button type="button" name="button" STYLE="background-color: transparent; border:2px blue none; outline:none;">
+                  <i class="far fa-envelope" style="font-size:1.5em"></i>
+                </button>
+              </td>
+              <td>
+                <button class="removeOne" type="button" name="button" STYLE="background-color: transparent; border:2px blue none; outline:none;">
+                  <i class="fas fa-trash-alt" style="font-size:1.5em"></i>
+                </button>
+              </td>
+            </tr>
+
+            <tr class="failureItem">
+              <td></td>
+              <!-- <td><input class="selectFailureOne" type="checkbox" name="" value=""></td> -->
               <td>
                 <div class="img_area">
                   <a href="#"><img class="img_Preview" src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRlHYMzh5mYwX_ag7DrgR2NrWYb8PGvDd2gkM2OW4AoO2VDVmbY&usqp=CAU" alt=""></a>
@@ -157,10 +177,7 @@
         </div>
       </div>
 
-
-
-
-      <div class="row justify-content-center">
+      <div class="row clearItem justify-content-center">
         <div class="col">
           <div class="removeArea">
             <button class="removeSelect" type="button" name="button">刪除勾選的商品</button>
@@ -169,7 +186,7 @@
           </div>
         </div>
       </div>
-      <div class="row justify-content-end">
+      <div class="row checkoutArea justify-content-end">
         <div class="col-md-4">
           <div class="">
             <a>購買(</a>
@@ -186,10 +203,6 @@
           </div>
         </div>
       </div>
-
-
-
-
 
       </div>
     </div>

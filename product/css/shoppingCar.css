@@ -25,6 +25,16 @@ tr{
   box-shadow: 1px 2px 2px 2px #cccccc;
 }
 
+.noItem{
+  position: absolute;
+  /* top: 50%; */
+  left: 50%;
+  margin: 0px 0px 0px -240px;
+}
+
+.noItemCar{
+  margin: 100px;
+}
 
 .quantity input{
   width: 100%;
@@ -80,14 +90,11 @@ input[type="checkbox"]{
 
 
 /* ===失效=== */
-div.failureArea{
-}
 .failureArea th{
-  background-color: gray;
+  background-color: lightgray;
 }
 .removeFailure{
-  color: white;
-  background-color: gray;
+  background-color: lightgray;
   width: 150px;
   height: 30px;
   margin: 50px 0px;
