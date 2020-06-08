@@ -68,20 +68,23 @@ $(".checkout").on("click", function(){
     sessionStorage.clear();
     let goods = [];
     $(".selectOne:checked").each(function(index, item){
-      console.log($(this).closest("tr").find("option:checked").attr("data-pd_ID"));
-      console.log($(this).closest("tr").find(".input_quantity").val());
-      let pd_ID = $(this).closest("tr").find("option:checked").attr("data-pd_ID");
+      // console.log($(this).closest("tr").find("option:checked").attr("data-productDetail_ID"));
+      // console.log($(this).closest("tr").find(".input_quantity").val());
+      let productName = $(this).closest("tr").find(".productName").html();
+      let product_ID = $(this).closest("tr").find(".productName").attr("data-product_ID");
+      let productDetail_ID = $(this).closest("tr").find("option:checked").attr("data-productDetail_ID");
       let option = $(this).closest("tr").find("option:checked").html();
       let price = $(this).closest("tr").find(".price").html();
       let quantity = $(this).closest("tr").find(".input_quantity").val();
-      goods[index] = JSON.stringify({
-        "pd_ID":pd_ID,
+      goods[index] = {
+        "productName":productName,
+        "product_ID":product_ID,
+        "productDetail_ID":productDetail_ID,
         "option":option,
         "price":price,
-        "quantity":quantity,
-        "":""
-      })
-      sessionStorage.setItem("checkoutInfo", goods);
+        "quantity":quantity
+      }
+      sessionStorage.setItem("checkoutInfo", JSON.stringify(goods));
     });
     window.location.href="checkout.html"
   }
@@ -178,7 +181,17 @@ function reverseCheckbox(){
   }
 }
 
+//寄信功能自動填入標題
+$(".ask").on("click", function(){
+  let productName = $(this).closest("tr").find(".productName").html();
+  let product_ID = $(this).closest("tr").find(".productName").attr("data-product_ID");
+  $("#write_title").val(product_ID + " 品名:" + productName + "詢問");
+  console.log($(this).closest("tr").find(".productName").html());
+});
 
+
+
+//失效商品的checkbox勾選 > 0608取消失效商品的checkbox
 // $(".selectFailureAll").on("click", function(){
 //   for(let i=0; i<$(".selectFailureOne").length; i++){
 //     $(".selectFailureOne")[i].checked = $(this)[0].checked;

@@ -44,6 +44,9 @@ div.payments{
   background: #E6903B;
 }
 
+.btn_payments:disabled{
+  background: lightgray;
+}
 
 
 div.choiceAccount{
@@ -114,7 +117,7 @@ hr{
 
 .subtotalAgain{
   text-align: right;
-  padding: 10px;
+  padding: 0px 25px;
   box-shadow: 0px 5px 3px 0px #cccccc;
 }
 

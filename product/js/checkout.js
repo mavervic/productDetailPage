@@ -1,16 +1,6 @@
-
-
-
-
-
-
-
-
-
-
-
 $(window).on("load", function(){
   // console.log($(".orderOne").find(".price").text());
+  getCheckoutInfo();
   let tottleAmount = 0;
   $(".orderOne").each(function(){
     let price = $(this).find(".price").html();
@@ -29,30 +19,36 @@ $(window).on("load", function(){
   $(".tottleAmount").html(tottleAmount);
   $(".shouldPay").html(tottleAmount);
 
-  // let quantity = $(".span_quantity").closest("tr").prev().children(".quantity").html();
-  // let subtotal = $(".span_subtotal").closest("tr").prev().children(".subtotal").html()
-  //
-  // $(".span_quantity").html(quantity);
-  // $(".span_subtotal").html(subtotal);
-
-
 });
 
+//讀取購物車放在sessionStorage的資料
+function getCheckoutInfo(){
+  let goods = JSON.parse(sessionStorage.getItem("checkoutInfo"))
+  $(goods).each(function(){
+    let good = $(this)[0];
+    console.log(good);
+    orderOneDOM(good.productName, good.product_ID, good.productDetail_ID, good.option, good.price, good.quantity);
+  });
+}
 
+
+
+//付款方式按鈕樣式切換
 $(".btn_payments").on("click", function(){
   $(".-on").toggleClass("-on");
   $(this).toggleClass("-on");
 });
 
+//選擇使用信用卡付款時動態產生相關頁面
 $(".credicard").on("click", function(){
   $(".choiceAccount").html(credicard);
 });
-
+//選擇使用銀行轉帳時動態產生相關頁面
 $(".transfer").on("click", function(){
   $(".choiceAccount").html("");
 });
-
-$(".transfer").on("click", function(){
+//選擇使用手機支付時動態產生相關頁面
+$(".mobilePay").on("click", function(){
   $(".choiceAccount").html("");
 });
 
@@ -102,12 +98,10 @@ $(window).on("keyup", function(e){
     $(".couponDetail").css("display","none");
   }else if (e.which == 27 && $(".couponDetail").css("display")=="none") {
     modal.style.display = "none";
-
   }
 });
 
-// =======================================================================
-
+// 燈箱2==============================================
 let modal1 = document.getElementById('myModal1');
 $(document).on("click", ".addCreditcard", function(){
   modal1.style.display = "block";
@@ -122,10 +116,6 @@ $(".cancel").click(function(){
   $(".couponDetail").css("display","none");
 });
 
-$(".registerCreditcard").on("click", function(){
-
-});
-
 $(window).on("keyup", function(e){
   // console.log("鍵盤對應的ASCII: " + e.which);
   if (e.which == 27) {
@@ -133,7 +123,15 @@ $(window).on("keyup", function(e){
   }
 });
 
+//註冊新增信用卡
+$(".registerCreditcard").on("click", function(){
 
+
+});
+
+
+
+//自動切換信用卡icon
 $(".btn_payments").on("click", function(){
   $(".cardNumber").each(function(){
     let str = $(this).html();
@@ -176,3 +174,28 @@ let credicard =
     <button class="addCreditcard" type="button" name="button">++使用新信用卡付款</button>
   </div>
 </div>`
+
+
+function orderOneDOM(productName, product_ID, productDetail_ID, option, price, quantity){
+  let foo = `<tr class="orderOne">
+    <td style="width:10%;" class="">
+      <div class="previewImg">
+        <img src="https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/iphone-se-red-select-2020?wid=940&hei=1112&fmt=png-alpha&qlt=80&.v=1586574260319" alt="">
+      </div>
+    </td>
+    <td class="" data-product_ID="`+product_ID+`">`+productName+`</td>
+    <td class="" data-productDetail_ID="`+productDetail_ID+`">`+option+`</td>
+    <td class="price">`+price+`</td>
+    <td class="quantity">`+quantity+`</td>
+    <td class="subtotal"></td>
+  </tr>
+  <tr>
+    <td colspan="6" class="subtotalAgain">
+      訂單金額(<span class="span_quantity"></span>個商品)
+      NT:<span class="span_subtotal"></span>
+      <hr>
+    </td>
+  </tr>`
+
+  console.log($("table").first().append(foo));
+}
