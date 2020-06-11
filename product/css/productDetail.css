@@ -17,6 +17,12 @@ div.features_card{
   background-color: white;
 }
 
+.features_card button{
+  background-color: transparent;
+  border:2px blue none;
+  outline:none;
+}
+
 div.introduction_card{
   margin-top: 10px;
   margin_bottom: 10px;
@@ -273,7 +279,7 @@ div.ref_img img:hover{
 
 /* ====================燈箱起點==================== */
 /* The Modal (background) */
-.modal {
+#myModal {
   display: none; /* Hidden by default */
   position: fixed; /* Stay in place */
   z-index: 1; /* Sit on top */
@@ -284,7 +290,7 @@ div.ref_img img:hover{
   height: 100%; /* Full height */
   overflow: auto; /* Enable scroll if needed */
   background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+  background-color: rgba(0,0,0,0.8); /* Black w/ opacity */
 }
 
 /* Modal Content (Image) */

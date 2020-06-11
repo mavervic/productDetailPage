@@ -35,6 +35,8 @@ function createSpc(){
       dateFormat: "Y-m-d",
       minDate: "today"
     });
+    $(".end").attr("disabled","disabled");
+
   }else if ($(".product_Class").val()=="住宿") {
     $(".product_spc").children("table").html(typeHotel);
     //初始化日期
@@ -47,29 +49,56 @@ function createSpc(){
   }
 }
 
-//起始日不會大於結束日
+//起始日與結束日連動
 $(document).on("change", "input.start", function(){
   let foo = $("input.start").val();
   let bar = $("input.end").val();
-  if(foo != "" && bar == ""){
+
+  if(foo >= bar && $(".product_Class").val()=="住宿"){
+    foo = Date.parse(foo).valueOf();
     flatpickr("input.end",{
       altInput: false,
       altFormat: "F j, Y",
       dateFormat: "Y-m-d",
-      minDate: $("input.start").val()
+      minDate: new Date(foo+(1000*60*60*24))
     });
-  }else if (foo != "" && bar != "") {
+  }else if ($(".product_Class").val()=="景點") {
+    $(".end").val(foo);
+  }else if ($(".product_Class").val()=="套裝行程") {
+    let days = 5-1;
     foo = Date.parse(foo).valueOf();
-    bar = Date.parse(bar).valueOf();
-    if(foo > bar){
-      flatpickr("input.end",{
-        altInput: false,
-        altFormat: "F j, Y",
-        dateFormat: "Y-m-d",
-        minDate: $("input.start").val()
-      });
-    }
+    foo = foo+(1000*60*60*24*days);
+    flatpickr("input.end",{
+      altInput: false,
+      altFormat: "F j, Y",
+      dateFormat: "Y-m-d",
+      defaultDate: foo
+    });
   }
+
+
+
+
+
+  // if(foo != "" && bar == ""){
+  //   flatpickr("input.end",{
+  //     altInput: false,
+  //     altFormat: "F j, Y",
+  //     dateFormat: "Y-m-d",
+  //     minDate: $("input.start").val()
+  //   });
+  // }else if (foo != "" && bar != "") {
+  //   foo = Date.parse(foo).valueOf();
+  //   bar = Date.parse(bar).valueOf();
+  //   if(foo > bar){
+  //     flatpickr("input.end",{
+  //       altInput: false,
+  //       altFormat: "F j, Y",
+  //       dateFormat: "Y-m-d",
+  //       minDate: $("input.start").val()
+  //     });
+  //   }
+  // }
 });
 
 
@@ -108,13 +137,13 @@ $(document).on("click", "button.btn_option", function(){
   if($(this).is(".-on")){
     $(this).toggleClass("-on");
     $("div.price_area").children("h5").html("售價: " + "請先選擇查看價錢");
-    $("input.input_quantity").siblings("a").html("庫存數量: " + "> 99");
+    $("input.input_quantity").siblings("a").html("剩餘數量: " + "> 99");
   }else{
     $(this).closest("td").children("button").attr("class","btn_option");
     $(this).toggleClass("-on");
     $("div.price_area").children("h5").html("售價: " + $(this).children("a.price").html());
     $("input.input_quantity").val(1);
-    $("input.input_quantity").siblings("a").html("庫存數量: " + $(this).children("a.stock").html());
+    $("input.input_quantity").siblings("a").html("剩餘數量: " + $(this).children("a.stock").html());
     $("input.input_quantity").attr("max", $(this).children("a.stock").html());
     $("input.productDetail_ID").val($(this).children("a.PD_ID").html());
   }
