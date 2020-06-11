@@ -56,7 +56,7 @@
             <h5>售價: 請先選擇查看價錢</h5>
           </div>
           <div class="product_spc">
-            <table>
+            <table class="anyOptionArea">
               <!-- 套裝行程、景點、餐廳or美食、住宿 -->
               <input class="product_Class" type="input" name="" value="套裝行程" style="display: none;">
               <!-- <tr>
@@ -342,7 +342,7 @@
     <script src="/js/productDetail.js"></script>
     <script type="text/javascript">
 
-    let typeNoDate = `<tr>
+    let typeFood = `<tr>
         <td class="spc">
           選項
         </td>
@@ -395,23 +395,198 @@
         </td>
       </tr>`;
 
-      let typeDate=`<tr>
-      　  <td rowspan="1">選項</td>
+      let typeTravel=`<tr>
+      　<td class="spc" rowspan="1">選項</td>
       　<td><i class="far fa-calendar-alt" style="font-size: 1.5em;"></i></td>
-        <td>起始日期</td>
+        <td class="col3">起始日期</td>
         <td><input class="inputCalendar start" name=""></td>
-      　</tr>
-      　<tr>
-        <td></td>
-      　<td><i class="far fa-calendar-alt" style="font-size: 1.5em;"></i></td>
-        <td>結束日期</td>
-        <td><input class="inputCalendar end" name=""></td>
-      　</tr>
+      </tr>
       <tr>
         <td></td>
-        <td style="text-align: center;"><i class="fas fa-male" style="font-size: 1.8em;"></i></td>
-        <td>人數</td>
-        <td><input class="input_quantity" type="number" name="quantity" min="1" value="1"></td>
+      　<td><i class="far fa-calendar-alt" style="font-size: 1.5em;"></i></td>
+        <td class="col3">結束日期</td>
+        <td><input class="inputCalendar end" name=""></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td style="text-align: center;"><i class="fas fa-location-arrow" style="font-size: 1.2em;"></i></td>
+        <td class="col3">細項</td>
+        <td>
+          <button class="btn_option" type="button" name="button">
+            選項111
+            <a class="price">1980</a>
+            <a class="stock">1231</a>
+            <a class="PD_ID">PD000001</a>
+          </button>
+          <button class="btn_option" type="button" name="button">
+            選項2222222
+            <a class="price">2680</a>
+            <a class="stock">23</a>
+            <a class="PD_ID">PD000002</a>
+          </button>
+          <button class="btn_option" type="button" name="button">
+            選項111
+            <a class="price">1980</a>
+            <a class="stock">1231</a>
+            <a class="PD_ID">PD000001</a>
+          </button>
+          <button class="btn_option" type="button" name="button">
+            選項2222222
+            <a class="price">2680</a>
+            <a class="stock">23</a>
+            <a class="PD_ID">PD000002</a>
+          </button><button class="btn_option" type="button" name="button">
+            選項111
+            <a class="price">1980</a>
+            <a class="stock">1231</a>
+            <a class="PD_ID">PD000001</a>
+          </button>
+          <button class="btn_option" type="button" name="button">
+            選項2222222
+            <a class="price">2680</a>
+            <a class="stock">23</a>
+            <a class="PD_ID">PD000002</a>
+          </button><button class="btn_option" type="button" name="button">
+            選項111
+            <a class="price">1980</a>
+            <a class="stock">1231</a>
+            <a class="PD_ID">PD000001</a>
+          </button>
+          <button class="btn_option" type="button" name="button">
+            選項2222222
+            <a class="price">2680</a>
+            <a class="stock">23</a>
+            <a class="PD_ID">PD000002</a>
+          </button><button class="btn_option" type="button" name="button">
+            選項111
+            <a class="price">1980</a>
+            <a class="stock">1231</a>
+            <a class="PD_ID">PD000001</a>
+          </button>
+          <button class="btn_option" type="button" name="button">
+            選項2222222
+            <a class="price">2680</a>
+            <a class="stock">23</a>
+            <a class="PD_ID">PD000002</a>
+          </button><button class="btn_option" type="button" name="button">
+            選項111
+            <a class="price">1980</a>
+            <a class="stock">1231</a>
+            <a class="PD_ID">PD000001</a>
+          </button>
+          <button class="btn_option" type="button" name="button">
+            選項2222222
+            <a class="price">2680</a>
+            <a class="stock">0</a>
+            <a class="PD_ID">PD000002</a>
+          </button>
+        </td>
+      </tr>
+      <tr>
+        <td></td>
+        <td style="text-align: center;"><i class="fas fa-male" style="font-size: 1.6em;"></i></td>
+        <td class="col3">人數</td>
+        <td><input class="input_quantity" type="number" name="quantity" min="1" value="1">
+          <a>可下訂房間數: > 99</a>
+        </td>
+      </tr>`;
+
+
+
+      let typeHotel=`<tr>
+      　<td class="spc" rowspan="1">選項</td>
+      　<td><i class="far fa-calendar-alt" style="font-size: 1.5em;"></i></td>
+        <td class="col3">起始日期</td>
+        <td><input class="inputCalendar start" name=""></td>
+      </tr>
+      <tr>
+        <td></td>
+      　<td><i class="far fa-calendar-alt" style="font-size: 1.5em;"></i></td>
+        <td class="col3">結束日期</td>
+        <td><input class="inputCalendar end" name=""></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td style="text-align: center;"><i class="fas fa-bed" style="font-size: 1.2em;"></i></td>
+        <td class="col3">房型</td>
+        <td>
+          <button class="btn_option" type="button" name="button">
+            選項111
+            <a class="price">1980</a>
+            <a class="stock">1231</a>
+            <a class="PD_ID">PD000001</a>
+          </button>
+          <button class="btn_option" type="button" name="button">
+            選項2222222
+            <a class="price">2680</a>
+            <a class="stock">23</a>
+            <a class="PD_ID">PD000002</a>
+          </button>
+          <button class="btn_option" type="button" name="button">
+            選項111
+            <a class="price">1980</a>
+            <a class="stock">1231</a>
+            <a class="PD_ID">PD000001</a>
+          </button>
+          <button class="btn_option" type="button" name="button">
+            選項2222222
+            <a class="price">2680</a>
+            <a class="stock">23</a>
+            <a class="PD_ID">PD000002</a>
+          </button><button class="btn_option" type="button" name="button">
+            選項111
+            <a class="price">1980</a>
+            <a class="stock">1231</a>
+            <a class="PD_ID">PD000001</a>
+          </button>
+          <button class="btn_option" type="button" name="button">
+            選項2222222
+            <a class="price">2680</a>
+            <a class="stock">23</a>
+            <a class="PD_ID">PD000002</a>
+          </button><button class="btn_option" type="button" name="button">
+            選項111
+            <a class="price">1980</a>
+            <a class="stock">1231</a>
+            <a class="PD_ID">PD000001</a>
+          </button>
+          <button class="btn_option" type="button" name="button">
+            選項2222222
+            <a class="price">2680</a>
+            <a class="stock">23</a>
+            <a class="PD_ID">PD000002</a>
+          </button><button class="btn_option" type="button" name="button">
+            選項111
+            <a class="price">1980</a>
+            <a class="stock">1231</a>
+            <a class="PD_ID">PD000001</a>
+          </button>
+          <button class="btn_option" type="button" name="button">
+            選項2222222
+            <a class="price">2680</a>
+            <a class="stock">23</a>
+            <a class="PD_ID">PD000002</a>
+          </button><button class="btn_option" type="button" name="button">
+            選項111
+            <a class="price">1980</a>
+            <a class="stock">1231</a>
+            <a class="PD_ID">PD000001</a>
+          </button>
+          <button class="btn_option" type="button" name="button">
+            選項2222222
+            <a class="price">2680</a>
+            <a class="stock">0</a>
+            <a class="PD_ID">PD000002</a>
+          </button>
+        </td>
+      </tr>
+      <tr>
+        <td></td>
+        <td style="text-align: center;"><i class="fas fa-home" style="font-size: 1.4em;"></i></td>
+        <td class="col3">房間數</td>
+        <td><input class="input_quantity" type="number" name="quantity" min="1" value="1">
+          <a>可下訂房間數: > 99</a>
+        </td>
       </tr>`;
 
       let normalProduct = `<div class="col">

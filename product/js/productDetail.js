@@ -25,9 +25,18 @@ function checkStock(){
 //依照商品類型動態產生頁面
 function createSpc(){
   if($(".product_Class").val()=="餐廳"){
-    $(".product_spc").children("table").html(typeNoDate);
-  }else if($(".product_Class").val()=="套裝行程"){
-    $(".product_spc").children("table").html(typeDate);
+    $(".product_spc").children("table").html(typeFood);
+  }else if($(".product_Class").val()=="套裝行程" || $(".product_Class").val()=="景點"){
+    $(".product_spc").children("table").html(typeTravel);
+    //初始化日期
+    flatpickr(".inputCalendar",{
+      altInput: false,
+      altFormat: "F j, Y",
+      dateFormat: "Y-m-d",
+      minDate: "today"
+    });
+  }else if ($(".product_Class").val()=="住宿") {
+    $(".product_spc").children("table").html(typeHotel);
     //初始化日期
     flatpickr(".inputCalendar",{
       altInput: false,
