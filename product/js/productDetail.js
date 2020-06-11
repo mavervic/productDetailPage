@@ -227,7 +227,23 @@ $("button.addCar").on("click", function(){
       showConfirmButton: false,
       timer: 1500
     });
-  }else if ($(".product_Class").val()=="套裝行程" && $(".inputCalendar")[0].value=="" || $(".inputCalendar")[1].value=="") {
+  }else if ($(".product_Class").val()=="套裝行程" && $(".start").val()=="" || $("div.product_spc").find("button.-on").length!=1) {
+    swal({
+      position: 'top-end',
+      icon: 'error',
+      title: '請先選擇商品規格',
+      showConfirmButton: false,
+      timer: 1500
+    });
+  }else if ($(".product_Class").val()=="景點" && $(".start").val()=="" || $("div.product_spc").find("button.-on").length!=1) {
+    swal({
+      position: 'top-end',
+      icon: 'error',
+      title: '請先選擇商品規格',
+      showConfirmButton: false,
+      timer: 1500
+    });
+  }else if ($(".product_Class").val()=="住宿" && $(".start").val()=="" || $(".end").val()=="" || $("div.product_spc").find("button.-on").length!=1) {
     swal({
       position: 'top-end',
       icon: 'error',
@@ -244,7 +260,34 @@ $("button.addCar").on("click", function(){
 
 //立即購買
 $("button.checkout").on("click", function(e){
-  if($("div.product_spc").find("button.-on").length!=1){
+  if($(".product_Class").val()=="餐廳" && $("div.product_spc").find("button.-on").length!=1){
+    swal({
+      position: 'top-end',
+      icon: 'error',
+      title: '請先選擇商品規格',
+      showConfirmButton: false,
+      timer: 1500
+    });
+    e.preventDefault();//阻止submit送出表單
+  }else if ($(".product_Class").val()=="套裝行程" && $(".start").val()=="" || $("div.product_spc").find("button.-on").length!=1) {
+    swal({
+      position: 'top-end',
+      icon: 'error',
+      title: '請先選擇商品規格',
+      showConfirmButton: false,
+      timer: 1500
+    });
+    e.preventDefault();//阻止submit送出表單
+  }else if ($(".product_Class").val()=="景點" && $(".start").val()=="" || $("div.product_spc").find("button.-on").length!=1) {
+    swal({
+      position: 'top-end',
+      icon: 'error',
+      title: '請先選擇商品規格',
+      showConfirmButton: false,
+      timer: 1500
+    });
+    e.preventDefault();//阻止submit送出表單
+  }else if ($(".product_Class").val()=="住宿" && $(".start").val()=="" || $(".end").val()=="" || $("div.product_spc").find("button.-on").length!=1) {
     swal({
       position: 'top-end',
       icon: 'error',

@@ -17,7 +17,7 @@ div.features_card{
   background-color: white;
 }
 
-.features_card button{
+.leftside button{
   background-color: transparent;
   border:2px blue none;
   outline:none;
@@ -316,7 +316,7 @@ div.ref_img img:hover{
 /* Add Animation - Zoom in the Modal */
 .modal-content, #caption {
   animation-name: zoom;
-  animation-duration: 0.6s;
+  animation-duration: 0.5s;
 }
 
 @keyframes zoom {
