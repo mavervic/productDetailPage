@@ -25,43 +25,86 @@ function checkStock(){
 //依照商品類型動態產生頁面
 function createSpc(){
   if($(".product_Class").val()=="餐廳"){
-    $(".product_spc").children("table").html(typeNoDate);
-  }else if($(".product_Class").val()=="套裝行程"){
-    $(".product_spc").children("table").html(typeDate);
+    $(".product_spc").children("table").html(typeFood);
+  }else if($(".product_Class").val()=="套裝行程" || $(".product_Class").val()=="景點"){
+    $(".product_spc").children("table").html(typeTravel);
     //初始化日期
     flatpickr(".inputCalendar",{
       altInput: false,
       altFormat: "F j, Y",
       dateFormat: "Y-m-d",
-      minDate: "today"
+      minDate: "today",
+      maxDate: new Date().getTime()+(1000*60*60*24*59)
     });
-  }
-}
-
-//起始日不會大於結束日
-$(document).on("change", "input.start", function(){
-  let foo = $("input.start").val();
-  let bar = $("input.end").val();
-  if(foo != "" && bar == ""){
+    $(".end").attr("disabled","disabled");
+  }else if ($(".product_Class").val()=="住宿") {
+    $(".product_spc").children("table").html(typeHotel);
+    //初始化日期
+    flatpickr(".start",{
+      altInput: false,
+      altFormat: "F j, Y",
+      dateFormat: "Y-m-d",
+      minDate: "today",
+      maxDate: new Date().getTime()+(1000*60*60*24*59)
+    });
     flatpickr("input.end",{
       altInput: false,
       altFormat: "F j, Y",
       dateFormat: "Y-m-d",
-      minDate: $("input.start").val()
+      minDate: new Date().getTime()+(1000*60*60*24),
+      maxDate: new Date().getTime()+(1000*60*60*24*60)
     });
-  }else if (foo != "" && bar != "") {
+  }
+}
+
+
+$(document).on("change", "input.start", function(){
+//起始日與結束日連動
+  let foo = $("input.start").val();
+  let bar = $("input.end").val();
+  if(foo >= bar && $(".product_Class").val()=="住宿"){
     foo = Date.parse(foo).valueOf();
-    bar = Date.parse(bar).valueOf();
-    if(foo > bar){
-      flatpickr("input.end",{
-        altInput: false,
-        altFormat: "F j, Y",
-        dateFormat: "Y-m-d",
-        minDate: $("input.start").val()
-      });
+    flatpickr("input.end",{
+      altInput: false,
+      altFormat: "F j, Y",
+      dateFormat: "Y-m-d",
+      minDate: new Date(foo+(1000*60*60*24)),
+      maxDate: new Date().getTime()+(1000*60*60*24*60)
+    });
+  }else if ($(".product_Class").val()=="景點") {
+    $(".end").val(foo);
+  }else if ($(".product_Class").val()=="套裝行程") {
+    let days = 5-1;
+    foo = Date.parse(foo).valueOf();
+    foo = foo+(1000*60*60*24*days);
+    flatpickr("input.end",{
+      altInput: false,
+      altFormat: "F j, Y",
+      dateFormat: "Y-m-d",
+      defaultDate: foo
+    });
+  }
+});
+
+$(document).on("change", ".inputCalendar", function(){
+  if($("input.start").val()!="" && $("input.end").val()!=""){
+    let foo = $("input.start").val();
+    let bar = $("input.end").val();
+    console.log(foo);
+    console.log(bar);
+    foo = new Date(foo).valueOf();
+    bar = new Date(bar).valueOf();
+    console.log(foo);
+    console.log(bar);
+
+    let missedPeriod = (bar-foo-86400000)/86400000;
+
+    for(let i=0; i<missedPeriod; i++){
+      console.log(new Date(foo+((i+1)*86400000)));
     }
   }
 });
+
 
 
 //動態產生商品詳情
@@ -99,13 +142,13 @@ $(document).on("click", "button.btn_option", function(){
   if($(this).is(".-on")){
     $(this).toggleClass("-on");
     $("div.price_area").children("h5").html("售價: " + "請先選擇查看價錢");
-    $("input.input_quantity").siblings("a").html("庫存數量: " + "> 99");
+    $("input.input_quantity").siblings("a").html("剩餘數量: " + "> 99");
   }else{
     $(this).closest("td").children("button").attr("class","btn_option");
     $(this).toggleClass("-on");
     $("div.price_area").children("h5").html("售價: " + $(this).children("a.price").html());
     $("input.input_quantity").val(1);
-    $("input.input_quantity").siblings("a").html("庫存數量: " + $(this).children("a.stock").html());
+    $("input.input_quantity").siblings("a").html("剩餘數量: " + $(this).children("a.stock").html());
     $("input.input_quantity").attr("max", $(this).children("a.stock").html());
     $("input.productDetail_ID").val($(this).children("a.PD_ID").html());
   }
@@ -189,7 +232,23 @@ $("button.addCar").on("click", function(){
       showConfirmButton: false,
       timer: 1500
     });
-  }else if ($(".product_Class").val()=="套裝行程" && $(".inputCalendar")[0].value=="" || $(".inputCalendar")[1].value=="") {
+  }else if ($(".product_Class").val()=="套裝行程" && $(".start").val()=="" || $("div.product_spc").find("button.-on").length!=1) {
+    swal({
+      position: 'top-end',
+      icon: 'error',
+      title: '請先選擇商品規格',
+      showConfirmButton: false,
+      timer: 1500
+    });
+  }else if ($(".product_Class").val()=="景點" && $(".start").val()=="" || $("div.product_spc").find("button.-on").length!=1) {
+    swal({
+      position: 'top-end',
+      icon: 'error',
+      title: '請先選擇商品規格',
+      showConfirmButton: false,
+      timer: 1500
+    });
+  }else if ($(".product_Class").val()=="住宿" && $(".start").val()=="" || $(".end").val()=="" || $("div.product_spc").find("button.-on").length!=1) {
     swal({
       position: 'top-end',
       icon: 'error',
@@ -206,7 +265,34 @@ $("button.addCar").on("click", function(){
 
 //立即購買
 $("button.checkout").on("click", function(e){
-  if($("div.product_spc").find("button.-on").length!=1){
+  if($(".product_Class").val()=="餐廳" && $("div.product_spc").find("button.-on").length!=1){
+    swal({
+      position: 'top-end',
+      icon: 'error',
+      title: '請先選擇商品規格',
+      showConfirmButton: false,
+      timer: 1500
+    });
+    e.preventDefault();//阻止submit送出表單
+  }else if ($(".product_Class").val()=="套裝行程" && $(".start").val()=="" || $("div.product_spc").find("button.-on").length!=1) {
+    swal({
+      position: 'top-end',
+      icon: 'error',
+      title: '請先選擇商品規格',
+      showConfirmButton: false,
+      timer: 1500
+    });
+    e.preventDefault();//阻止submit送出表單
+  }else if ($(".product_Class").val()=="景點" && $(".start").val()=="" || $("div.product_spc").find("button.-on").length!=1) {
+    swal({
+      position: 'top-end',
+      icon: 'error',
+      title: '請先選擇商品規格',
+      showConfirmButton: false,
+      timer: 1500
+    });
+    e.preventDefault();//阻止submit送出表單
+  }else if ($(".product_Class").val()=="住宿" && $(".start").val()=="" || $(".end").val()=="" || $("div.product_spc").find("button.-on").length!=1) {
     swal({
       position: 'top-end',
       icon: 'error',
