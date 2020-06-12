@@ -33,34 +33,43 @@ function createSpc(){
       altInput: false,
       altFormat: "F j, Y",
       dateFormat: "Y-m-d",
-      minDate: "today"
+      minDate: "today",
+      maxDate: new Date().getTime()+(1000*60*60*24*59)
     });
     $(".end").attr("disabled","disabled");
-
   }else if ($(".product_Class").val()=="住宿") {
     $(".product_spc").children("table").html(typeHotel);
     //初始化日期
-    flatpickr(".inputCalendar",{
+    flatpickr(".start",{
       altInput: false,
       altFormat: "F j, Y",
       dateFormat: "Y-m-d",
-      minDate: "today"
+      minDate: "today",
+      maxDate: new Date().getTime()+(1000*60*60*24*59)
+    });
+    flatpickr("input.end",{
+      altInput: false,
+      altFormat: "F j, Y",
+      dateFormat: "Y-m-d",
+      minDate: new Date().getTime()+(1000*60*60*24),
+      maxDate: new Date().getTime()+(1000*60*60*24*60)
     });
   }
 }
 
-//起始日與結束日連動
+
 $(document).on("change", "input.start", function(){
+//起始日與結束日連動
   let foo = $("input.start").val();
   let bar = $("input.end").val();
-
   if(foo >= bar && $(".product_Class").val()=="住宿"){
     foo = Date.parse(foo).valueOf();
     flatpickr("input.end",{
       altInput: false,
       altFormat: "F j, Y",
       dateFormat: "Y-m-d",
-      minDate: new Date(foo+(1000*60*60*24))
+      minDate: new Date(foo+(1000*60*60*24)),
+      maxDate: new Date().getTime()+(1000*60*60*24*60)
     });
   }else if ($(".product_Class").val()=="景點") {
     $(".end").val(foo);
@@ -75,31 +84,27 @@ $(document).on("change", "input.start", function(){
       defaultDate: foo
     });
   }
-
-
-
-
-
-  // if(foo != "" && bar == ""){
-  //   flatpickr("input.end",{
-  //     altInput: false,
-  //     altFormat: "F j, Y",
-  //     dateFormat: "Y-m-d",
-  //     minDate: $("input.start").val()
-  //   });
-  // }else if (foo != "" && bar != "") {
-  //   foo = Date.parse(foo).valueOf();
-  //   bar = Date.parse(bar).valueOf();
-  //   if(foo > bar){
-  //     flatpickr("input.end",{
-  //       altInput: false,
-  //       altFormat: "F j, Y",
-  //       dateFormat: "Y-m-d",
-  //       minDate: $("input.start").val()
-  //     });
-  //   }
-  // }
 });
+
+$(document).on("change", ".inputCalendar", function(){
+  if($("input.start").val()!="" && $("input.end").val()!=""){
+    let foo = $("input.start").val();
+    let bar = $("input.end").val();
+    console.log(foo);
+    console.log(bar);
+    foo = new Date(foo).valueOf();
+    bar = new Date(bar).valueOf();
+    console.log(foo);
+    console.log(bar);
+
+    let missedPeriod = (bar-foo-86400000)/86400000;
+
+    for(let i=0; i<missedPeriod; i++){
+      console.log(new Date(foo+((i+1)*86400000)));
+    }
+  }
+});
+
 
 
 //動態產生商品詳情
