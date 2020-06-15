@@ -22,12 +22,6 @@ function checkStock(){
   });
 }
 
-
-let str = `Day 1：早餐＿華山阜杭豆漿→華山藝文特區街拍→華山大草原野餐→FN Hotel Check in→晚餐＿owls bistro 窩式小酒館→三創園區曝車軌、拍滑板→宵夜＿外帶柒串燒回飯店 Day 2：早餐＿FN Hotel 房間享用→台北西區漫步＿迪化街街拍→迪化街小吃＿台南土魠魚羹→下午茶＿南街得意→Pick . Collect手作金工皮革 →晚餐＿青花驕麻辣火鍋`
-let arr = str.split("Day");
-console.log(arr);
-
-
 //依照商品類型動態產生頁面
 function createSpc(){
   if($(".product_Class").val()=="餐廳"){
@@ -39,7 +33,7 @@ function createSpc(){
       altInput: false,
       altFormat: "F j, Y",
       dateFormat: "Y-m-d",
-      minDate: "today",
+      minDate: new Date().getTime()+(1000*60*60*24*2),
       maxDate: new Date().getTime()+(1000*60*60*24*59)
     });
     $(".end").attr("disabled","disabled");
@@ -162,6 +156,20 @@ $(document).on("click", "button.btn_option", function(){
     $("input.productDetail_ID").val($(this).children("a.PD_ID").html());
   }
 });
+
+
+
+let str = `機場--台北--西門町--華西街夜市--宿台北Dayys故宮--北投--淡水--士林夜市--台北IOI--宿台北Dayys頭城烏石港--城堡咖啡館--黑沙灘--蘭陽博物館--傳統藝術中心--宜蘭酒廠--礁溪溫泉--宿台北Dayys中正紀念堂--南門市場--回溫暖的家`;
+let arr = str.split("Dayys");
+console.log(arr);
+$(arr).each(function(index, item){
+
+});
+console.log($(".btn_option").html());
+
+
+
+
 
 // 評論篩選的按鈕樣式相關
 $("td.filter_area").children("button").on("click", function(){
