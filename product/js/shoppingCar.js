@@ -116,6 +116,7 @@ $(".removeSelect").on("click", function(){
         $(".selectOne:checked").each(function(){
           $(this).closest("tr").remove();
           reverseCheckbox();
+          noItem();
         });
       } else {
         // swal("Your imaginary file is safe!");
@@ -158,6 +159,7 @@ $(".removeFailure").on("click", function(){
   $(".failureItem").remove();
   $(".failureArea").remove();
   $(".gap").remove();
+  noItem();
 });
 
 

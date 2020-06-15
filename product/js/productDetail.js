@@ -22,6 +22,12 @@ function checkStock(){
   });
 }
 
+
+let str = `Day 1：早餐＿華山阜杭豆漿→華山藝文特區街拍→華山大草原野餐→FN Hotel Check in→晚餐＿owls bistro 窩式小酒館→三創園區曝車軌、拍滑板→宵夜＿外帶柒串燒回飯店 Day 2：早餐＿FN Hotel 房間享用→台北西區漫步＿迪化街街拍→迪化街小吃＿台南土魠魚羹→下午茶＿南街得意→Pick . Collect手作金工皮革 →晚餐＿青花驕麻辣火鍋`
+let arr = str.split("Day");
+console.log(arr);
+
+
 //依照商品類型動態產生頁面
 function createSpc(){
   if($(".product_Class").val()=="餐廳"){
@@ -116,10 +122,13 @@ function createProductDetail(){
   }
 }
 
-//確保數量最低在1
+//確保數量如果是輸入的話最低在1最大值在max
 $(document).on("blur", ".input_quantity", function(){
-  if(!$(this).val()<1){
-    $(this).val("1");
+  let foo = parseInt($(this).val());
+  if(foo<1){
+    $(this).val(1);
+  }else if(foo > $(this).attr("max")){
+    $(this).val($(this).attr("max"));
   }
 });
 
@@ -144,7 +153,7 @@ $(document).on("click", "button.btn_option", function(){
     $("div.price_area").children("h5").html("售價: " + "請先選擇查看價錢");
     $("input.input_quantity").siblings("a").html("剩餘數量: " + "> 99");
   }else{
-    $(this).closest("td").children("button").attr("class","btn_option");
+    $(this).closest("td").children("button").attr("class","btn_option");//移除其他按鈕-on
     $(this).toggleClass("-on");
     $("div.price_area").children("h5").html("售價: " + $(this).children("a.price").html());
     $("input.input_quantity").val(1);
