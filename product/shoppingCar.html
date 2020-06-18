@@ -37,16 +37,16 @@
           <table>
             <!-- =======================標題欄======================= -->
             <tr>
-              <th style="width: 6%;"><input class="selectAll" type="checkbox" name="" value=""></th>
-              <th>預覽圖</th>
-              <th>商品名稱</th>
-              <th>選擇</th>
-              <th>單價</th>
-              <th>數量</th>
-              <th>小計</th>
-              <th style="width: 7%;">詢問</th>
-              <th style="width: 7%;">刪除</th>
+              <th style="width: 30px;"><input class="selectAll" type="checkbox" name="" value=""></th>
+              <th style="width: 160px;">預覽圖</th>
+              <th style="width: 120px;">商品名稱/選項</th>
+              <th style="width: 100px;">日期</th>
+              <th style="width: 100px;">單價/數量</th>
+              <th style="width: 100px;">小計</th>
+              <th style="width: 40px;">操作</th>
             </tr>
+
+
 
             <!-- =======================商品======================= -->
             <tr>
@@ -56,8 +56,8 @@
                   <a href="#"><img class="img_Preview" src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRlHYMzh5mYwX_ag7DrgR2NrWYb8PGvDd2gkM2OW4AoO2VDVmbY&usqp=CAU" alt=""></a>
                 </div>
               </td>
-              <td><a class="productName" data-product_ID="PID000001" href="#">231231321231132</a></td>
               <td>
+                <a class="productName" data-product_ID="PID000001" href="#">2312313333333333333333321231132</a>
                 <div class="spc">
                   <select class="" name="">
                     <option value="" data-productDetail_ID="pd_ID000001" data-price="10000">一二三四五六七八九十</option>
@@ -65,8 +65,12 @@
                   </select>
                 </div>
               </td>
-              <td class="price">98800</td>
               <td>
+                <p>2020-06-18</p>
+                <p>2020-06-30</p>
+              </td>
+              <td class="price">
+                <p>98800</p>
                 <div class="quantity">
                   <input class="input_quantity" type="number" name="" value="1" min="1" max="">
                 </div>
@@ -76,8 +80,6 @@
                 <button class="ask" type="button" name="button" data-toggle="modal" data-target="#exampleModal">
                   <i class="far fa-envelope" style="font-size:1.5em"></i>
                 </button>
-              </td>
-              <td>
                 <button class="removeOne" type="button" name="button">
                   <i class="fas fa-trash-alt" style="font-size:1.5em"></i>
                 </button>
@@ -91,17 +93,21 @@
                   <a href="#"><img class="img_Preview" src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRlHYMzh5mYwX_ag7DrgR2NrWYb8PGvDd2gkM2OW4AoO2VDVmbY&usqp=CAU" alt=""></a>
                 </div>
               </td>
-              <td><a class="productName" data-product_ID="PID000001" href="#">231231321231132</a></td>
               <td>
+                <a class="productName" data-product_ID="PID000001" href="#">2312313333333333333333321231132</a>
                 <div class="spc">
                   <select class="" name="">
-                    <option value="" data-productDetail_ID="pd_ID000003" data-price="300">一二三四五六七八九十</option>
-                    <option value="" data-productDetail_ID="pd_ID000004" data-price="400">一二三四五六七八九十</option>
+                    <option value="" data-productDetail_ID="pd_ID000001" data-price="10000">一二三四五六七八九十</option>
+                    <option value="" data-productDetail_ID="pd_ID000002" data-price="2000" selected>AAAAAAAAAAAA</option>
                   </select>
                 </div>
               </td>
-              <td class="price">98800</td>
               <td>
+                <p>2020-06-18</p>
+                <p>2020-06-30</p>
+              </td>
+              <td class="price">
+                <p>98800</p>
                 <div class="quantity">
                   <input class="input_quantity" type="number" name="" value="1" min="1" max="">
                 </div>
@@ -111,25 +117,20 @@
                 <button class="ask" type="button" name="button" data-toggle="modal" data-target="#exampleModal">
                   <i class="far fa-envelope" style="font-size:1.5em"></i>
                 </button>
-              </td>
-              <td>
                 <button class="removeOne" type="button" name="button">
                   <i class="fas fa-trash-alt" style="font-size:1.5em"></i>
                 </button>
               </td>
             </tr>
 
+
             <!-- ============失效商品=========== -->
-            <tr class="gap">
-              <td></td>
-            </tr>
             <tr class="failureArea">
               <th></th>
               <!-- <th style="width: 6%;"><input class="selectFailureAll" type="checkbox" name="" value=""></th> -->
               <th>預覽圖</th>
-              <th colspan="5">失效商品</th>
-              <th>詢問</th>
-              <th>刪除</th>
+              <th colspan="4">失效商品 (請重新加入購物車)</th>
+              <th>操作</th>
             </tr>
 
             <tr class="failureItem">
@@ -140,34 +141,11 @@
                   <a href="#"><img class="img_Preview" src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRlHYMzh5mYwX_ag7DrgR2NrWYb8PGvDd2gkM2OW4AoO2VDVmbY&usqp=CAU" alt=""></a>
                 </div>
               </td>
-              <td colspan="5"><a class="productName" data-product_ID="PID000001" href="#">231231321231132</a></td>
+              <td colspan="4"><a class="productName" data-product_ID="PID000001" href="#">231231321231132</a></td>
               <td>
                 <button class="ask" type="button" name="button" data-toggle="modal" data-target="#exampleModal">
                   <i class="far fa-envelope" style="font-size:1.5em"></i>
                 </button>
-              </td>
-              <td>
-                <button class="removeOne" type="button" name="button">
-                  <i class="fas fa-trash-alt" style="font-size:1.5em"></i>
-                </button>
-              </td>
-            </tr>
-
-            <tr class="failureItem">
-              <td></td>
-              <!-- <td><input class="selectFailureOne" type="checkbox" name="" value=""></td> -->
-              <td>
-                <div class="img_area">
-                  <a href="#"><img class="img_Preview" src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRlHYMzh5mYwX_ag7DrgR2NrWYb8PGvDd2gkM2OW4AoO2VDVmbY&usqp=CAU" alt=""></a>
-                </div>
-              </td>
-              <td colspan="5"><a class="productName" data-product_ID="PID000001" href="#">231231321231132</a></td>
-              <td>
-                <button class="ask" type="button" name="button" data-toggle="modal" data-target="#exampleModal">
-                  <i class="far fa-envelope" style="font-size:1.5em"></i>
-                </button>
-              </td>
-              <td>
                 <button class="removeOne" type="button" name="button">
                   <i class="fas fa-trash-alt" style="font-size:1.5em"></i>
                 </button>

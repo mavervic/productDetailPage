@@ -2,6 +2,8 @@ $(window).on("load", function(){
   changeOption();
   subtotal();
   noItem();
+
+
 });
 
 $(document).on("change", function(){
@@ -10,6 +12,8 @@ $(document).on("change", function(){
   prepareCheckout();
   reverseCheckbox();
 });
+
+
 
 //空購物車動態產生提示訊息
 function noItem(){
@@ -22,17 +26,17 @@ function noItem(){
 
 //選項變動時價格即時更新
 function changeOption(){
-  // console.log($("option:checked").attr("data-price"));
+  console.log($("option:checked").attr("data-price"));
   $("option:checked").each(function(){
     let price = $(this).attr("data-price");
-    $(this).closest("td").next(".price").html(price);
+    $(this).closest("tr").find(".price p").html(price);
   });
 }
 
 //單一商品小計
 function subtotal(){
   for(let i=0; i<$(".subtotal").length; i++){
-    let price = $(".price")[i].innerHTML;
+    let price = $(".price p")[i].innerHTML;
     let quantity = $(".input_quantity")[i].value;
     $(".subtotal")[i].innerHTML = price * quantity;
   }

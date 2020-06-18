@@ -1,28 +1,42 @@
 body{
   margin: 0;
   font-family: microsoft JhengHei !important;
+  background-color: #f0f0f0 !important;
 }
 
 table, tr, td, th{
-  /* border: 1px solid blue; */
+  /* border: 2px solid blue; */
   padding: 5px;
   text-align: center;
   box-sizing: content-box;
+  table-layout:fixed;
 }
+
 table{
   width: 100% !important;
-  table-layout: fixed;
+  background-color: white;
+  overflow:scroll;
 }
 .shoppingCar th{
   background-color: #E5B280;
 }
+
 th,td{
   overflow: hidden;
   text-overflow: ellipsis;
   nowrap: false;
+  padding: 10px;
 }
+
 tr{
-  box-shadow: 1px 2px 2px 2px #cccccc;
+  /* box-shadow: 1px 2px 2px 2px #cccccc; */
+  /* border: 2px solid blue; */
+
+}
+
+td{
+  border-bottom: 12px solid #f0f0f0;
+  word-wrap:break-word
 }
 
 td button[type="button"]{
@@ -46,7 +60,7 @@ td button[type="button"]{
 }
 
 .quantity input{
-  width: 100%;
+  width: 50%;
 }
 
 .shoppingCar{
@@ -65,7 +79,7 @@ select{
   background-color: black;
 }
 .img_Preview{
-  width: 120%;
+  width: 100%;
 }
 input[type="checkbox"]{
   position: relative;
@@ -100,10 +114,10 @@ input[type="checkbox"]{
 
 /* ===失效=== */
 .failureArea th{
-  background-color: lightgray;
+  background-color: #a2a9b0;
 }
 .removeFailure{
-  background-color: lightgray;
+  background-color: #a2a9b0;
   width: 150px;
   height: 30px;
   margin: 50px 0px;
