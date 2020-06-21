@@ -32,53 +32,39 @@
         <div class="col-12">
           <table>
             <h4>我的訂單</h4>
-            <tr>
-              <th class="">預覽圖</th>
-              <th class="">商品名稱</th>
-              <th class="">商品選項</th>
+            <tr >
+              <th class="" style="width:200px;">預覽圖</th>
+              <th class="" >商品名稱/商品選項</th>
+              <th class="">日期</th>
               <th class="">單價</th>
               <th class="">數量</th>
-              <th class="">小計</th>
-            </tr>
-            <!-- <tr class="orderOne">
-              <td style="width:10%;" class="">
-                <div class="previewImg">
-                  <img src="https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/iphone-se-red-select-2020?wid=940&hei=1112&fmt=png-alpha&qlt=80&.v=1586574260319" alt="">
-                </div>
-              </td>
-              <td class="">iphone XD</td>
-              <td class="" data-productDetail_ID="">8G 128GB</td>
-              <td class="price">9980</td>
-              <td class="quantity">1</td>
-              <td class="subtotal"></td>
-            </tr>
-            <tr>
-              <td colspan="6" class="subtotalAgain">
-                訂單金額(<span class="span_quantity"></span>個商品)
-                NT:<span class="span_subtotal"></span>
-                <hr>
-              </td>
+              <!-- <th class="">小計</th> -->
             </tr>
 
-            <tr class="orderOne">
-              <td style="width:10%;" class="">
+            <tr class="orderOne" data-productDetail_ID="">
+              <td rowspan="2" class="" style="box-shadow: 0px 3px 0px 0px #cccccc;">
                 <div class="previewImg">
-                  <img src="https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/iphone-se-red-select-2020?wid=940&hei=1112&fmt=png-alpha&qlt=80&.v=1586574260319" alt="">
+                  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Sun_Down_%28250260941%29.jpeg/300px-Sun_Down_%28250260941%29.jpeg" alt="">
                 </div>
               </td>
-              <td class="">iphone XD</td>
-              <td class="" data-productDetail_ID="">8G 128GB</td>
-              <td class="price">9980</td>
+              <td class="">
+                <p class="">iphone XD</p>
+                <p class="">8G 128GB</p>
+              </td>
+              <td>
+                <p class="">2016-01-20</p>
+                <p class="">2016-12-04</p>
+              </td>
+              <td class="price">99803</td>
               <td class="quantity">3</td>
-              <td class="subtotal"></td>
             </tr>
             <tr>
-              <td colspan="6" class="subtotalAgain">
+              <td colspan="4" class="subtotalAgain">
+                <hr>
                 訂單金額(<span class="span_quantity"></span>個商品)
                 NT:<span class="span_subtotal"></span>
-                <hr>
               </td>
-            </tr> -->
+            </tr>
 
           </table>
         </div>
@@ -103,15 +89,42 @@
         <div class="col-12 col-md-9">
           <button class="btn_payments credicard" type="button" name="button">信用卡</button>
           <button class="btn_payments transfer" type="button" name="button" disabled>銀行轉帳</button>
-          <button class="btn_payments mobilePay" type="button" name="button" disabled>手機支付</button>
+          <button class="btn_payments mobilePay" type="button" name="button">手機支付</button>
         </div>
       </div>
 
-      <div class="row choiceAccount">
-        <!-- <div class="col-12 col-md-3">
+      <div class="row choiceAccount creditCard">
+        <div class="col-12 col-md-3">
+          選擇付款帳戶
+          <br><i>(要先拿到用戶資料再select出來)</i>
+        </div>
+        <div class="col-12 col-md-9 creditCard">
+          <div class="">
+            <label>
+              <input type="radio" name="1" value=""><i class="fab fa-cc-visa" style="font-size: 2em;"></i>
+              <a class="cardNumber">4xxx-xxxx-xxxx-xxxx</a>
+            </label>
+          </div>
+          <div class="">
+            <label>
+              <input type="radio" name="1" value=""><i class="fab fa-cc-mastercard" style="font-size: 2em;"></i>
+              <a class="cardNumber">5xxx-xxxx-xxxx-xxxx</a>
+            </label>
+          </div>
+          <div class="">
+            <label>
+              <input type="radio" name="1" value=""><i class="fab fa-cc-jcb" style="font-size: 2em;"></i>
+              <a class="cardNumber">3xxx-xxxx-xxxx-xxxx</a>
+            </label>
+          </div>
+          <div class="">
+            <button class="addCreditcard" type="button" name="button">++使用新信用卡付款</button>
+          </div>
+        </div>
+        <!-- <div class="col-12 col-md-3 creditCard">
           選擇付款帳戶
         </div>
-        <div class="col-12 col-md-9">
+        <div class="col-12 col-md-9 creditCard">
           <div class="">
             <label>
               <input type="radio" name="1" value=""><i class="fab fa-cc-visa" style="font-size: 2em;"></i>
@@ -190,6 +203,7 @@
                 <td class="column3">
                   <button class="callDetail" type="button" name="button">優惠券使用詳情</button>
               </tr>
+
             </tbody>
           </table>
         </div>

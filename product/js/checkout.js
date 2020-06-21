@@ -1,6 +1,23 @@
 $(window).on("load", function(){
   // console.log($(".orderOne").find(".price").text());
   getCheckoutInfo();
+  subtotal();
+  tottleAmount();
+
+});
+
+//計算每個商品的小計
+function subtotal(){
+  $(".orderOne").each(function(){
+    let price = $(this).find(".price").html();
+    let quantity = $(this).find(".quantity").html();
+    $(this).next("tr").find(".span_subtotal").html(price * quantity);
+    $(this).next("tr").find(".span_quantity").html(quantity);
+  });
+}
+
+//計算應付金額
+function tottleAmount(){
   let tottleAmount = 0;
   $(".orderOne").each(function(){
     let price = $(this).find(".price").html();
@@ -9,17 +26,10 @@ $(window).on("load", function(){
     tottleAmount += price * quantity;
   });
 
-  $(".span_subtotal").each(function(){
-    let quantity = $(this).closest("tr").prev().children(".quantity").html();
-    let subtotal = $(this).closest("tr").prev().children(".subtotal").html();
-    $(this).prev(".span_quantity").html(quantity);
-    $(this).html(subtotal);
-  });
-
   $(".tottleAmount").html(tottleAmount);
   $(".shouldPay").html(tottleAmount);
+}
 
-});
 
 //讀取購物車放在sessionStorage的資料
 function getCheckoutInfo(){
@@ -27,7 +37,7 @@ function getCheckoutInfo(){
   $(goods).each(function(){
     let good = $(this)[0];
     console.log(good);
-    orderOneDOM(good.productName, good.product_ID, good.productDetail_ID, good.option, good.price, good.quantity);
+    orderOneDOM(good.productName, good.product_ID, good.productDetail_ID, good.spc, good.price, good.quantity, good.start, good.end);
   });
 }
 
@@ -41,15 +51,17 @@ $(".btn_payments").on("click", function(){
 
 //選擇使用信用卡付款時動態產生相關頁面
 $(".credicard").on("click", function(){
-  $(".choiceAccount").html(credicard);
+  // $(".choiceAccount").html(credicard);
+  $(".creditCard").css("display", "")
 });
 //選擇使用銀行轉帳時動態產生相關頁面
 $(".transfer").on("click", function(){
-  $(".choiceAccount").html("");
+  // $(".choiceAccount").html("");
 });
 //選擇使用手機支付時動態產生相關頁面
 $(".mobilePay").on("click", function(){
-  $(".choiceAccount").html("");
+  // $(".choiceAccount").html("");
+  $(".creditCard").css("display", "none")
 });
 
 
@@ -81,13 +93,14 @@ $(".callDetail").on("click", function(){
   console.log("data-coupon_ID: "+$(this).closest("tr").attr("data-coupon_ID"));
 });
 
+//計算應付金額(含打折後)
 $(".confirm").on("click", function(){
   console.log($("input.radioCoupon:checked").next("a").html());
   if($("input.radioCoupon:checked").length>0){
     $(".selectedCoupon").html("已選取: "+$("input.radioCoupon:checked").next("a").html());
     let discount = $("input.radioCoupon:checked").attr("data-discount")
-    $(".discount").html($(".tottleAmount").html()-$(".tottleAmount").html()*discount);
-    $(".shouldPay").html($(".tottleAmount").html()*discount);
+    $(".discount").html(Math.ceil($(".tottleAmount").html()-$(".tottleAmount").html()*discount));
+    $(".shouldPay").html($(".tottleAmount").html()-$(".discount").html());
   }
   modal.style.display = "none";
 });
@@ -176,24 +189,31 @@ let credicard =
 </div>`
 
 
-function orderOneDOM(productName, product_ID, productDetail_ID, option, price, quantity){
-  let foo = `<tr class="orderOne">
-    <td style="width:10%;" class="">
+
+function orderOneDOM(productName, product_ID, productDetail_ID, spc, price, quantity, start. end){
+  let contextPath = location.pathname.split("/")[1];
+  let foo = `<tr class="orderOne" data-product_ID="`+product_ID+`" data-productDetail_ID="`+productDetail_ID+`">
+    <td rowspan="2" class="" style="box-shadow: 0px 3px 0px 0px #cccccc;">
       <div class="previewImg">
-        <img src="https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/iphone-se-red-select-2020?wid=940&hei=1112&fmt=png-alpha&qlt=80&.v=1586574260319" alt="">
+        <img src="/`+contextPath+`/DBGifReader2?conditions=`+product_ID+`&whichImg=PRODUCT_IMG1&tName=PRODUCT" alt="">
       </div>
     </td>
-    <td class="" data-product_ID="`+product_ID+`">`+productName+`</td>
-    <td class="" data-productDetail_ID="`+productDetail_ID+`">`+option+`</td>
+    <td class="">
+      <p class="">`+productName+`</p>
+      <p class="">`+spc+`</p>
+    </td>
+    <td>
+      <p class="">`+start+`</p>
+      <p class="">`+end+`</p>
+    </td>
     <td class="price">`+price+`</td>
     <td class="quantity">`+quantity+`</td>
-    <td class="subtotal"></td>
   </tr>
   <tr>
-    <td colspan="6" class="subtotalAgain">
+    <td colspan="4" class="subtotalAgain">
+      <hr>
       訂單金額(<span class="span_quantity"></span>個商品)
       NT:<span class="span_subtotal"></span>
-      <hr>
     </td>
   </tr>`
 
