@@ -11,3 +11,17 @@ if(window.Worker){
     }
   }
 }
+
+// 將目前網址先暫存
+var current_url = location.href;
+
+// 將目前瀏覽歷程的 url 設定為 a.html
+history.replaceState(null, null, "denypage.html");
+
+// 新增一個瀏覽歷程，為 current_url
+history.pushState(null, null, current_url);
+
+// 按下上一頁時，觸發 popstate 事件
+window.onpopstate = function(event){
+  location.reload();
+}

@@ -190,7 +190,7 @@ let credicard =
 
 
 
-function orderOneDOM(productName, product_ID, productDetail_ID, spc, price, quantity, start. end){
+function orderOneDOM(productName, product_ID, productDetail_ID, spc, price, quantity, start, end){
   let contextPath = location.pathname.split("/")[1];
   let foo = `<tr class="orderOne" data-product_ID="`+product_ID+`" data-productDetail_ID="`+productDetail_ID+`">
     <td rowspan="2" class="" style="box-shadow: 0px 3px 0px 0px #cccccc;">
